@@ -1,5 +1,5 @@
-# www.capitalprint.com
-CapitalPrint WAS MADE WITH THE BLAZOR WASM AND AN ASP.NET CORE. IT'S A WEB AND MOBILE APPLICATION WITH A COMMERCIAL REASON FOR SALE AND ORDER OF PRINTS AND PRINTING OF CUSTOM SHIRTS, MUGS AND BRANDS, AND MANY OTHER COMPANY AND ORGANIZATIONAL RECOGNITIONS. AND INCREASE VISIBILITY OF YOUR COMPANY USING SHIRTS AND OFFICE WEAR COMPILATION... THE CAPITALPRINT WEBSITE & MOBILE APPLICATION WAS MADE TO LET ITS CLIENTS HAVE ACCESS TO THE SERVICES OF THE COMPANY...https://READMORE
+# acqu.github.io/www.capitalprint.com
+CapitalPrint was developed using Blazor WebAssembly and ASP.NET Core. It is a web and mobile application designed for the sale and ordering of prints, as well as the customization of shirts, mugs, and branding materials. The application aims to help companies and organizations enhance their visibility through branded apparel and office wear. The CapitalPrint website and mobile application provide clients with easy access to these services..https://READMORE
 
 STRUCTURE OF THE APPLICATION
 1. CLIENT SIDE APPLICATION
