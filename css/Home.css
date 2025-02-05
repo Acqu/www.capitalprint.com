@@ -1,0 +1,93 @@
+﻿.carousel-item img {
+    height: 0 auto;
+    width: 100%;
+    object-fit: cover; /* Ensures the image scales properly */
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: right;
+}
+
+    .carousel-caption button {
+        background-color: #007bff;
+        position: center;
+        color: white;
+        width: 20%;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .carousel-caption img {
+        position: absolute;
+        width: 95%;
+        max-width: contain;
+        height: 0 contain; /* Adjust this value as needed */
+        object-fit: contain; /* Ensures the image scales properly */
+    }
+
+.hidden-carousel {
+    display: none;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.product-item {
+    flex: 1 1 calc(25% - 40px); /* Ensures 4 items per row */
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    transition: border-color 0.3s ease-in, transform 0.3s ease-in;
+}
+
+    .product-item:hover {
+        border-color: none; /* Remove border color on hover */
+        transform: scale(1.05); /* Zoom effect */
+    }
+
+        .product-item:hover .description-heading,
+        .product-item:hover .description-text {
+            color: blue; /* Change text color to blue on hover */
+            font-weight:bold; font-size:large;
+        }
+
+    .product-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 0.3s ease-in; /* Smooth zoom effect */
+    }
+
+    .product-item:hover img {
+        transform: scale(1.1); /* Zoom the image */
+    }
+
+.description {
+    font-size: xx-small;
+    text-align: center;
+    padding: 10px;
+}
+
+.description-heading {
+    font-size: x-small;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.description-text {
+    display: inline; /* Ensures the text remains inline with heading */
+}
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CapitalPrint</title>
+    <base href="/www.capitalprint.com/" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/MainLayout.css">
+    <link rel="stylesheet" href="css/Home.css">
+    <link rel="stylesheet" href="css/Products.css">
+    <link rel="stylesheet" href="css/Solution.css">
+    <style>
+        .spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white; /* Optional: Add a background color to cover the entire screen */
+            z-index: 9999; /* Ensure the spinner is on top of other content */
+            overflow: hidden; /* Prevent scrolling while the spinner is visible */
+        }
+
+        .spinner-inner {
+            width: 100px;
+            height: 100px;
+            border: 10px solid #f3f3f3; /* Light grey */
+            border-top: 10px solid mediumvioletred; /* Top banner background color */
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            position: relative;
+        }
+
+            .spinner-inner img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 40px; /* Adjust the size of the logo */
+                height: 40px; /* Adjust the size of the logo */
+            }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="spinner">
+            <div class="spinner-inner">
+                <img src="favicon.ico" alt="CapitalPrint Logo">
+            </div>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function startCarousel() {
+            var myCarousel = document.querySelector('#carouselExampleIndicators');
+            if (myCarousel) {
+                var carousel = new bootstrap.Carousel(myCarousel, {
+                    interval: 3000,
+                    ride: 'carousel'
+                });
+            }
+        }
+
+        function toggleMenu() {
+            document.querySelector('.nav').classList.toggle('active');
+        }
+
+        function startChangingText() {
+            const phrases = [
+                "CapitalPrint T-shirts & Promotional Products",
+                "Fast & Free Shipping",
+                "All-Inclusive Pricing",
+                "Custom Designs for Every Occasion",
+                "With limitless productivity and one-on-one indulgence we give you the best"
+            ];
+            let currentPhraseIndex = 0;
+            const changingTextElement = document.getElementById('changing-text');
+            if (!changingTextElement) {
+                console.error("Element with ID 'changing-text' not found.");
+                return;
+            }
+
+            function changeText() {
+                changingTextElement.style.opacity = 0; // Fade out
+                setTimeout(() => {
+                    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                    changingTextElement.textContent = phrases[currentPhraseIndex];
+                    changingTextElement.style.opacity = 1; // Fade in
+                }, 500); // Change text after fading out
+            }
+
+            // Initial text
+            changingTextElement.textContent = phrases[currentPhraseIndex];
+            changingTextElement.style.opacity = 1; // Ensure initial text is visible
+
+            // Change text every 3 seconds
+            setInterval(changeText, 3000);
+        }
+
+        function hideLoadingSpinner() {
+            const spinner = document.querySelector('.spinner');
+            if (spinner) {
+                spinner.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            startChangingText();
+            startCarousel(); // Start the carousel when the document is loaded
+            // Hide the loading spinner after a short delay
+            //setTimeout(hideLoadingSpinner, 1000); // Adjust the delay as needed
+        });
+    </script>
+</body>
+</html>
