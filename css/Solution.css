@@ -1,0 +1,107 @@
+﻿.solutions-page {
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.company-building {
+    width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+.company-info {
+    margin-top: -50px; font-family:'Times New Roman', Times, serif;
+    background-color: azure;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.rotating-logo {
+    width: 50px; height:50px;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.solutions-section {
+    margin-bottom: 20px;
+}
+
+.solution-category {
+    margin-bottom: 20px;
+}
+
+.solution-category h3 {
+    color: #007BFF;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.grid-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.grid-container ul li {
+    margin: 5px 0;
+}
+
+.contact-section {
+    margin-bottom: 20px;
+    background-color:azure;
+}
+
+.contact-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-section ul li {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+.contact-section ul li img {
+    margin-right: 10px; width:20px; height:20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
