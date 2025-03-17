@@ -1,0 +1,273 @@
+﻿.main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+/* Top Banner using Bootstrap’s ease-in-out effect */
+.top-banner {
+    background-color: mediumvioletred;
+    color: white;
+    padding: 10px 20px;
+    font-size: medium;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.top-banner-left {
+    text-align: left;
+    flex: 1;
+}
+
+.top-banner-right {
+    text-align: right;
+    flex: 1;
+}
+
+#changing-text {
+    display: inline-block;
+    transition: opacity 0.5s ease-in-out;
+    font-size: 20px;
+    margin-right: 15px;
+}
+/* Toggle Button: Hide on large screens, show on small screens */
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+}
+
+.location-btn,
+.help-btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+    transition: all 0.5s ease-in-out;
+}
+
+    .location-btn i,
+    .help-btn i {
+        margin-right: 5px;
+        font-size: 20px; /* Reduced size */
+    }
+
+/* Header Content */
+.header-content {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.5s ease-in-out;
+}
+
+.left-content {
+    display: flex;
+    align-items: center;
+    color: mediumvioletred;
+    font-size: large;
+    font-family: 'Franklin Gothic';
+}
+
+.logo {
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Header Contact/Chat info */
+.right-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-info,
+.chat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .contact-info i,
+    .chat-info i {
+        font-size: 30px;
+        margin-bottom: 5px;
+    }
+
+.phone-link,
+.chat-link {
+    font-size: inherit;
+    color: darkorange;
+    text-decoration: none;
+}
+
+/* Hide toggle button on larger screens */
+.menu-toggle {
+    display: none;
+}
+
+/* On small screens, show only the toggle button for navigation */
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+    /* Optionally, adjust right-content text size for better fit */
+    .right-content, .contact-info, .chat-info {
+        font-size: 14px;
+    }
+}
+
+
+/* Ensure text fits and adjusts on small screens */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .contact-link,
+    .chat-link {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 15px;
+        /* Remove any margin-bottom properties if present */
+    }
+    #changing-text {
+        font-size: 16px;
+    }
+}
+
+/* Navigation Container - add thick top and bottom borders */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    border-bottom: 4px solid #ddd;
+    transition: all 0.5s ease-in-out;
+}
+
+.nav {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    width: 100%;
+}
+
+    .nav li {
+        position: relative;
+        margin: 0;
+    }
+
+    .nav a {
+        text-decoration: none;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: block;
+        transition: all 0.5s ease-in-out;
+    }
+
+        .nav a:hover,
+        .nav a:focus {
+            background-color: #f0f0f0;
+        }
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 9999;
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    min-width: 240px;
+    transition: all 0.5s ease-in-out;
+}
+
+.nav li:hover .dropdown,
+.nav li:focus-within .dropdown {
+    display: block;
+}
+
+/* Other existing CSS rules remain unchanged */
+.footer {
+    width: 100%;
+    background-color: lightgray;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+}
+
+.footer-item {
+    text-align: center;
+    font-size: medium;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.TRP img {
+    width: 20px;
+    height: 20px;
+}
+
+.headerDescription {
+    font: bold;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.CWRP {
+    color: blue;
+}
+
+.social-media-animation {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.social-icon {
+    font-size: 24px;
+    color: #333;
+    margin: 0 15px;
+    transition: all 0.5s ease-in-out;
+}
+
+    .social-icon:hover {
+        transform: scale(1.2);
+        color: #ff4081;
+    }
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

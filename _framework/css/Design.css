@@ -1,0 +1,85 @@
+﻿.design-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.design-left {
+    width: 150px;
+}
+
+.design-main {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.design-right {
+    width: 250px;
+    margin-left: 20px;
+}
+
+.vertical-views img {
+    cursor: pointer;
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.color-box {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.shirt-preview {
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Adjust as needed */
+    margin: 0 auto;
+}
+
+.shirt-image {
+    width: 100%;
+    display: block;
+}
+
+.text-overlay, .uploaded-image {
+    position: absolute;
+    top: 50%; /* Adjust as needed */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: move; /* Ensure the cursor changes when hovering over the image or text */
+}
+
+.uploaded-image {
+    max-width: 80%; /* Adjust as needed */
+    max-height: 80%; /* Adjust as needed */
+}
+
+.design-options {
+    width: 45%;
+}
+
+    .design-options h4 {
+        margin-top: 20px;
+    }
+
+.color-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn {
+    margin-top: 20px;
+}

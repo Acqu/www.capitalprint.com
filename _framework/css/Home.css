@@ -1,0 +1,372 @@
+﻿/* Carousel Styles */
+.carousel-item img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.carousel-item {
+    transition: opacity 1.5s ease-in-out;
+    opacity: 6;
+}
+
+    .carousel-item.active {
+        opacity: 100;
+    }
+
+/* Thicker top border for carousel */
+.carousel {
+    border-top: 1px solid #ddd; /* Adjust thickness as needed */
+}
+
+/* Dot Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    gap: 5px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+    .carousel-indicators li {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #bbb;
+        cursor: pointer;
+        transition: background-color 0.5s ease-in-out;
+        display: inline-block;
+    }
+
+    .carousel-indicators .active {
+        background-color: #007bff;
+    }
+    /* Ensure dot indicators remain inline */
+    .carousel-indicators li {
+        display: inline-block;
+    }
+
+/* Product Grid Container - Applies scrolling only to the product grid */
+.product-grid-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+/* Product Grid Styles */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    /* Set a minimum width so horizontal scrolling appears when necessary */
+    min-width: 800px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.product-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    transition: border-color 0.3s ease-in, transform 0.3s ease-in;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+    .product-item:hover {
+        border-color: #007bff;
+        transform: scale(1.05);
+    }
+
+    .product-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
+        transition: transform 0.3s ease-in;
+    }
+
+    .product-item:hover img {
+        transform: scale(1.1);
+    }
+
+.description {
+    font-size: small;
+    text-align: center;
+    padding: 10px;
+}
+
+.uniform-info {
+    min-width: 250px;
+}
+
+.uniform-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+   
+.description-heading {
+    font-size: medium;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.description-text {
+    display: inline;
+}
+
+/* Hovered Subcategory Slider inside Product Item */
+.hovered-products-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 50px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.subcat-item {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+    .subcat-item:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+/* Category Container - horizontal scroll with invisible scrollbar and arrow buttons */
+.category-container {
+    display: flex;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    gap: 20px;
+    margin-top: 20px;
+    position: relative;
+}
+
+    .category-container::-webkit-scrollbar {
+        display: none;
+    }
+
+.category-circle {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s, transform 0.3s;
+}
+
+    .category-circle img {
+        max-width: 70%;
+        max-height: 70%;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+
+    .category-circle p {
+        position: relative;
+        z-index: 1;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+.circle-subcats {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+    .circle-subcats .subcat-item {
+        background: transparent;
+        margin: 2px 0;
+        padding: 2px;
+        font-size: 0.8em;
+    }
+
+.scroll-btn-left,
+.scroll-btn-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: purple;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+    .scroll-btn-left:hover,
+    .scroll-btn-right:hover {
+        opacity: 1;
+    }
+
+.scroll-btn-left {
+    left: 10px;
+}
+
+.scroll-btn-right {
+    right: 10px;
+}
+
+/* Hovered Global Products */
+.hovered-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.hovered-product-item {
+    margin: 10px;
+    text-align: center;
+}
+
+    .hovered-product-item img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .hovered-product-item p {
+        margin-top: 5px;
+    }
+
+.hovered-products-inner .subcat-item {
+    transition: opacity 0.5s ease;
+}
+
+/* New Image Banner Section (horizontal scroll) */
+/*.image-banner {
+    margin: 20px auto;
+    width: 100vw;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}*/
+
+    .image-banner::-webkit-scrollbar {
+        display: none;
+    }
+
+    .image-banner .banner-scroll img {
+        display: inline-block;
+        margin-right: 10px;
+        width: auto;
+        height: 100px;
+        border-radius: 5px;
+    }
+
+.social-media-animation {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the icons */
+    margin: 20px 0; /* Space around the icons */
+}
+
+.social-icon {
+    font-size: 24px; /* Size of the icons */
+    color: #333; /* Default color */
+    margin: 0 15px; /* Space between icons */
+    transition: transform 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+    .social-icon:hover {
+        transform: scale(1.2); /* Scale up on hover */
+        color: #ff4081; /* Change color on hover */
+    }
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .product-item {
+        padding: 10px;
+    }
+
+    .product-image {
+        height: 150px;
+    }
+
+    .image-banner .banner-scroll img {
+        height: 80px;
+    }
+
+/* Sidebar smaller width */
+.custom-sidebar {
+    width: 200px;
+}
+
+/* Hide sidebar on small screens when toggled */
+.hide {
+    display: none;
+}
+
+/* Modal styling adjustments */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+}
