@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>capitalprint</title>
+    <!--<base href="/" />-->
+    <link rel="stylesheet" href="./css/app.css"/>
+    <link rel="stylesheet" href="./css/allproducts.css"/>
+    <link rel="stylesheet" href="./css/bootstrap.css"/>
+    <link rel="stylesheet" href="./css/bootstrap-grid.css"/>
+    <link rel="stylesheet" href="./css/bootstrap-reboot.css"/>
+    <link rel="stylesheet" href="./css/bootstrap-utilities.css"/>
+    <link rel="stylesheet" href="./css/design.css"/>
+    <link rel="stylesheet" href="./css/home.css"/>
+    <link rel="stylesheet" href="./css/MainLayout.css"/>
+    <link rel="stylesheet" href="./css/solution.css"/>
+    <link href="manifest.webmanifest" rel="manifest"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png"/>
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png"/>
+    <style>
+        .spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .spinner-inner {
+            width: 100px;
+            height: 100px;
+            border: 10px solid #f3f3f3;
+            border-top: 10px solid mediumvioletred;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            position: relative;
+        }
+
+            .spinner-inner img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 40px;
+                height: 40px;
+            }
+
+        .animated-text {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: mediumvioletred;
+            animation: fadeInOut 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+
+<!-- %%-PRERENDERING-HEADOUTLET-BEGIN-%% -->
+
+<!-- %%-PRERENDERING-HEADOUTLET-END-%% -->
+</head>
+<body>
+    <div id="app">
+        <div class="spinner">
+            <div class="spinner-inner">
+                <img src="favicon.ico" alt="CapitalPrint Logo"/>
+            </div>
+            <div class="animated-text">We Customize the look you Wear, While You Wear The Look You Wish...</div>
+        </div>
+    
+<!-- %%-PRERENDERING-BEGIN-%% -->
+<div style="opacity: 0; position: fixed; z-index: -1; top: 0; left: 0; bottom: 0; right: 0;">
+    <div class="main-layout"><header><div class="top-banner"><div class="top-banner-left"><span id="changing-text">Welcome to CapitalPrint</span></div>
+            <div class="top-banner-right"><a href="https://maps.google.com/?q=Ayikai+Gbozah+Street,+Kokomlemle+Accra+Ghana" target="_blank" class="location-btn"><i class="fas fa-map-marker-alt"></i> Store
+                </a>
+                <a href="tel:(+233) 024-473-6472" class="help-btn"><i class="fas fa-phone-alt"></i> Help
+                </a></div></div>
+
+        
+        <div class="header-content"><div class="left-content"><img src="favicon.ico" alt="CapitalPrintLogo" class="logo" /> CapitalPrint
+            </div>
+            <div class="right-content"><div class="contact-info"><span><i class="fas fa-phone"></i> Talk to a Real Person</span>
+                    <a href="tel:+233244736472" class="phone-link">(+233) 024-473-6472</a></div>
+                <div class="chat-info"><span><i class="fas fa-comment-dots"></i> Chat with a Real Person</span>
+                    <a href="https://wa.me/233244736472" target="_top" class="chat-link">Chat Now</a></div></div></div>
+
+        
+        <div class="nav-container"><nav><button class="menu-toggle">☰</button>
+                <ul class="nav "><li class="nav-item"><a href="allproducts" class="nav-link">Custom T-Shirts</a>
+                        <ul class="dropdown"><li><a href="allproducts?subcategory=Short%20Sleeve%20T-shirts" class="dropdown-item">Men&#x27;s T-Shirts</a></li>
+                            <li><a href="allproducts?subcategory=Women&#x27;s%20T-shirts" class="dropdown-item">Women&#x27;s T-Shirts</a></li>
+                            <li><a href="allproducts?subcategory=Kid&#x27;s%20T-Shirts" class="dropdown-item">Kids&#x27; T-Shirts</a></li></ul></li>
+                    <li class="nav-item"><a href="allproducts" class="nav-link">Custom Apparel</a>
+                        <ul class="dropdown"><li><a href="allproducts?subcategory=Hoodies%20" class="dropdown-item">Hoodies</a></li>
+                            <li><a href="allproducts?category=Jackets%20" class="dropdown-item">Jackets</a></li>
+                            <li><a href="allproducts?category=Hats%20" class="dropdown-item">Hats</a></li></ul></li>
+                    <li class="nav-item"><a href="allproducts" class="nav-link">Promotional Products</a>
+                        <ul class="dropdown"><li><a href="allproducts/mugs" class="dropdown-item">Mugs</a></li>
+                            <li><a href="allproducts?category=Pens%20&amp;%20Writing" class="dropdown-item">Pens</a></li>
+                            <li><a href="allproducts?category=Bags%20" class="dropdown-item">Bags</a></li></ul></li>
+                    <li class="nav-item"><a href="/design" class="nav-link active" aria-current="page">Design Lab</a></li></ul></nav></div></header>
+
+    
+    <div class="content"><div class="alert alert-warning"><p>No product selected. <a href="/allproducts">Go back to All Products</a></p></div></div>
+    <style>
+        .menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+            }
+
+                .nav.active {
+                    display: block;
+                }
+
+            .contact-info, .chat-info {
+                display: none;
+            }
+        }
+
+        .product-grid-container {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .product-grid {
+            display: inline-block;
+        }
+
+        .product-item {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* New styles for product-info uniform-info */
+        .product-info.uniform-info {
+            background-color: white;
+            padding: 5px;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+            .product-info.uniform-info p {
+                margin: 2px 0;
+            }
+
+        /* Reduce font size for contact and chat info icons and text */
+        .contact-info, .chat-info {
+            font-size: 0.8rem;
+        }
+
+            .contact-info i, .chat-info i {
+                font-size: 0.8rem;
+            }
+
+        /* Footer changing text centered style */
+        .footer-changing-text {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2rem;
+        }
+    </style>
+
+    
+    <footer class="footer"><div class="footer-changing-text"><span id="footer-changing-text">Capital Print: Home of DTF!</span></div>
+        <div class="footer-item">
+            &copy; 2025 CapitalPrint. All Rights Reserved.
+        </div>
+        <div class="footer-item">
+            CapitalPrint Is A Registered Trademark Of K.I.C.S.O Org. LLC, & A Sole Trade Of The KicsoTeam.
+        </div></footer></div>
+        <blazor-focus-on-navigate selector="h1"></blazor-focus-on-navigate>
+
+</div>
+<!-- %%-PRERENDERING-END-%% -->
+</div>
+    <script src="scripts.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.scrollToElement = (elementId) => {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        function hideLoadingSpinner() {
+            const spinner = document.querySelector('.spinner');
+            if (spinner) {
+                spinner.style.display = 'none';
+            } else {
+                console.warn('Spinner element not found.');
+            }
+        }
+
+        function startCarousel() {
+            $('#carouselExampleIndicators').carousel();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            hideLoadingSpinner();
+            startCarousel();
+        });
+
+        // Fallback timeout
+        setTimeout(() => {
+            hideLoadingSpinner();
+        }, 3000); // Adjust the time as needed
+
+    </script>
+    <script>
+        async function promptImageUpload() {
+            return new Promise((resolve) => {
+                const input = document.createElement("input");
+                input.type = "file";
+                input.accept = "image/*";
+                input.onchange = (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => resolve(e.target.result);
+                        reader.readAsDataURL(file);
+                    }
+                };
+                input.click();
+            });
+        }
+
+        async function captureAndUploadImage(elementId) {
+            const element = document.getElementById(elementId);
+            const canvas = await html2canvas(element);
+            const imageDataUrl = canvas.toDataURL("image/png");
+
+            console.log("Uploading image to Google...");
+            // Implement your Google API upload logic here
+        }
+
+        async function captureAndSendImage(elementId, name, color, price, items, size) {
+            const element = document.getElementById(elementId);
+            const canvas = await html2canvas(element);
+            const imageDataUrl = canvas.toDataURL("image/png");
+
+            const phoneNumber = "233244736472";
+            const message = `Name: ${name}\nColor: ${color}\nPrice: GHS ${price}\nItems: ${items}\nSize: ${size}`;
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+            window.location.href = whatsappUrl;
+        }
+
+        let dragElement = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        function startDrag(event) {
+            dragElement = event.target;
+            const shirtPreview = document.getElementById("shirt-preview");
+            const rect = shirtPreview.getBoundingClientRect();
+
+            offsetX = event.clientX - dragElement.getBoundingClientRect().left;
+            offsetY = event.clientY - dragElement.getBoundingClientRect().top;
+
+            document.addEventListener("mousemove", (e) => drag(e, rect));
+            document.addEventListener("mouseup", stopDrag);
+        }
+
+        function drag(event, boundaries) {
+            if (dragElement) {
+                const newX = Math.max(boundaries.left, Math.min(event.clientX - offsetX, boundaries.right - dragElement.offsetWidth));
+                const newY = Math.max(boundaries.top, Math.min(event.clientY - offsetY, boundaries.bottom - dragElement.offsetHeight));
+
+                dragElement.style.position = "absolute";
+                dragElement.style.left = `${newX - boundaries.left}px`;
+                dragElement.style.top = `${newY - boundaries.top}px`;
+            }
+        }
+
+        function stopDrag() {
+            document.removeEventListener("mousemove", drag);
+            document.removeEventListener("mouseup", stopDrag);
+            dragElement = null;
+        }
+
+        function makeResizableAndDraggable(element) {
+            element.style.resize = "both";
+            element.style.overflow = "hidden";
+            element.addEventListener("mousedown", startDrag);
+        }
+        document.addEventListener('click', function (event) {
+            const nav = document.querySelector('.nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (nav && nav.classList.contains('active') &&
+                !nav.contains(event.target) &&
+                !menuToggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+    <script>
+        function startCarouselForProducts() {
+            console.log("startCarouselForProducts invoked");
+        }
+    </script>
+    <script>
+        window.startChangingText = function (elementId, defaultText) {
+            const element = document.getElementById(elementId);
+            if (!element) {
+                console.error(`Element with ID "${elementId}" not found.`);
+                return;
+            }
+            // Use the defaultText as the first message.
+            const messages = [
+                defaultText,
+                "Custom Designs for Every Occasion",
+                "Quality, Creativity, and Style",
+                "Your Brand, Our Passion"
+            ];
+            let messageIndex = 0;
+            function updateText() {
+                element.style.opacity = 0;
+                setTimeout(() => {
+                    element.textContent = messages[messageIndex];
+                    element.style.opacity = 1;
+                    messageIndex = (messageIndex + 1) % messages.length;
+                }, 300);
+            }
+            updateText();
+            setInterval(updateText, 3000);
+        };
+    </script>
+
+
+
+</body></html>
