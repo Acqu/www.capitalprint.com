@@ -150,22 +150,23 @@ header {
     margin: 0;
 }
 
-.nav-link {
-    padding: 10px 15px;
-    text-decoration: none;
-    color: black;
-    font-size: medium;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
+.nav {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Horizontal alignment */
+    justify-content: flex-start; /* Align items to the left */
+    gap: 10px; /* Adjusts the space between items */
 }
 
-.nav-link:hover {
-    color: mediumvioletred; /* Pink hover color */
-}
-
-/* Dropdown Menu */
 .nav-item {
-    position: relative;
+    margin: 0; /* Remove additional margins */
+}
+
+.nav-link {
+    text-decoration: none;
+    padding: 5px; /* Adjust padding to reduce space further */
+    display: inline-block;
 }
 
 .dropdown {

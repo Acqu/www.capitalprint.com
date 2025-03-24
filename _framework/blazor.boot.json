@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "capitalprint",
   "resources": {
-    "hash": "sha256-Kh1L8ECjfoR61gD+Xq5kco5GQSzJhPkddn1dXnYH53o=",
+    "hash": "sha256-c0X2U+9AXkFNXKzTYdW2t0LH1+KHfVKjHhLJ0kjy9m8=",
     "fingerprinting": {
       "AnyClone.ae3k1z8gt7.wasm": "AnyClone.wasm",
       "Apache.Arrow.uzu1lewqfe.wasm": "Apache.Arrow.wasm",
@@ -9,7 +9,7 @@
       "Blazored.SessionStorage.34xr2ein7y.wasm": "Blazored.SessionStorage.wasm",
       "Blazorise.Licensing.5q2r77toij.wasm": "Blazorise.Licensing.wasm",
       "Blazorise.ht7u75j5mi.wasm": "Blazorise.wasm",
-      "capitalprint.hqhjd1kznx.wasm": "capitalprint.wasm",
+      "capitalprint.4mtfosddws.wasm": "capitalprint.wasm",
       "Fluxor.spaznd1495.wasm": "Fluxor.wasm",
       "JetBrains.Annotations.75veoqxomf.wasm": "JetBrains.Annotations.wasm",
       "MediatR.Contracts.f5sa8x1lz4.wasm": "MediatR.Contracts.wasm",
@@ -156,7 +156,7 @@
       "Blazored.SessionStorage.34xr2ein7y.wasm": "sha256-nQXuCGHos7iwp2WxRUgarKmWgJYChaVQp2NajgNU3V8=",
       "Blazorise.Licensing.5q2r77toij.wasm": "sha256-cwZ2JjZXwvbaPnMO5TRbPjB5RCR6BTjFabvKtE/wTnQ=",
       "Blazorise.ht7u75j5mi.wasm": "sha256-FY4BwMvBUhxqFp3mIv1YCGgMx8uyTBpOLHwTfQaqyWw=",
-      "capitalprint.hqhjd1kznx.wasm": "sha256-d05vAC7WYyeROwFZWXLdAm1edPKAAz/XHPVetCn/tzA=",
+      "capitalprint.4mtfosddws.wasm": "sha256-VKRGkEkEQcuQWb+akJVd527xqTxN1EccSZMCWUAZnzw=",
       "Fluxor.spaznd1495.wasm": "sha256-APyVBDq93FhhHXOm8kB0Guo/oYk+VcKmObk/+HK6CAI=",
       "JetBrains.Annotations.75veoqxomf.wasm": "sha256-K2Wvsx9NvmtkU4V07OCHCR0wmY6uNAnSuHp+KN2yAwc=",
       "MediatR.Contracts.f5sa8x1lz4.wasm": "sha256-/db+nahzjeSd5EhxUqFrpFzJ998Up6Vgs1PHrV3jqkU=",
@@ -298,13 +298,11 @@
       }
     },
     "libraryInitializers": {
-      "_content/BlazorWasmPreRendering.Build/BlazorWasmPreRendering.Build.lfyg69o9wu.lib.module.js": "sha256-UVy3L6kXaa89JN6tg+EbiLCuVLpkmxOoG6sAi7Bb9uc=",
       "_content/NimbleBlazor/NimbleBlazor.lib.module.js": "sha256-dTG0ngQMdq6sTup27SZ/1jTozHCVybQcR52jHxf5cug=",
       "SpawnDev.BlazorJS.2htzozka3f.lib.module.js": "sha256-CjwgItoyheD/tAPt4H9wK+LxY/cO7KM3e0uy51lfuoA=",
       "_content/TimeWarp.State/js/TimeWarp.State.lib.module.js": "sha256-Z5vyK4O4rNlJW26Uvho9LD5w4+MOxRnEhkSl2A7ZxPc="
     },
     "modulesAfterConfigLoaded": {
-      "../_content/BlazorWasmPreRendering.Build/BlazorWasmPreRendering.Build.lfyg69o9wu.lib.module.js": "sha256-UVy3L6kXaa89JN6tg+EbiLCuVLpkmxOoG6sAi7Bb9uc=",
       "../_content/NimbleBlazor/NimbleBlazor.lib.module.js": "sha256-dTG0ngQMdq6sTup27SZ/1jTozHCVybQcR52jHxf5cug="
     },
     "modulesAfterRuntimeReady": {
