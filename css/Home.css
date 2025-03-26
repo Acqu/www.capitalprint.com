@@ -50,12 +50,13 @@
 }
 
 /* Horizontal Scroll Product Container */
+/* Horizontal Scroll Product Container for Small Screens */
 .product-grid-container {
     display: flex;
     overflow-x: auto; /* Enables horizontal scrolling */
-    gap: 15px; /* Space between products */
-    padding: 15px;
-    background-color: #f9f9f9; /* Light background for distinction */
+    gap: 10px; /* Reduced spacing for smaller screens */
+    padding: 10px;
+    background-color: #f9f9f9;
     scrollbar-width: thin;
     -ms-overflow-style: none; /* For Internet Explorer */
 }
@@ -73,13 +74,22 @@
         background-color: #ddd; /* Light background for scrollbar track */
     }
 
+/* Improved Grid Layout for Larger Screens */
+@media (min-width: 768px) {
+    .product-grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+        gap: 15px; /* Reduced gap for larger screens */
+        overflow-x: visible; /* Removes horizontal scrolling */
+    }
+}
 /* Product Item */
 .product-item {
     flex: 0 0 auto; /* Prevents items from wrapping to the next row */
     width: 200px; /* Fixed width for each product */
     text-align: center;
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 15px;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
@@ -91,6 +101,16 @@
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); /* Emphasized shadow on hover */
     }
 
+/* Product Description Wrapping */
+.description {
+    white-space: nowrap; /* Keeps text on a single line */
+    overflow: hidden; /* Hides overflowing content */
+    text-overflow: ellipsis; /* Adds "..." for long text */
+    max-height: 30px; /* Short preview height */
+    line-height: 1.5;
+    margin-bottom: 10px; /* Adds spacing below the description */
+}
+
 .product-img {
     width: 100%; /* Ensures image fits within the product item */
     height: 150px; /* Fixed height to maintain consistent sizing */
@@ -99,7 +119,6 @@
     border-radius: 5px;
 }
 
-/* Color Options Styling */
 .color-options {
     display: flex;
     justify-content: center;
@@ -157,6 +176,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     transition: transform 0.3s ease-in, box-shadow 0.3s ease-in-out;
 }
+
 
 /* Social Media Animation */
 .social-media-animation {

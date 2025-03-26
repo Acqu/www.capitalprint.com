@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "capitalprint",
   "resources": {
-    "hash": "sha256-c0X2U+9AXkFNXKzTYdW2t0LH1+KHfVKjHhLJ0kjy9m8=",
+    "hash": "sha256-zRB1UHrqpH8BzXlI+9d76LRk5R3ZVgy+I84pPtnIA/o=",
     "fingerprinting": {
       "AnyClone.ae3k1z8gt7.wasm": "AnyClone.wasm",
       "Apache.Arrow.uzu1lewqfe.wasm": "Apache.Arrow.wasm",
@@ -9,7 +9,7 @@
       "Blazored.SessionStorage.34xr2ein7y.wasm": "Blazored.SessionStorage.wasm",
       "Blazorise.Licensing.5q2r77toij.wasm": "Blazorise.Licensing.wasm",
       "Blazorise.ht7u75j5mi.wasm": "Blazorise.wasm",
-      "capitalprint.4mtfosddws.wasm": "capitalprint.wasm",
+      "capitalprint.v22ob1qwsy.wasm": "capitalprint.wasm",
       "Fluxor.spaznd1495.wasm": "Fluxor.wasm",
       "JetBrains.Annotations.75veoqxomf.wasm": "JetBrains.Annotations.wasm",
       "MediatR.Contracts.f5sa8x1lz4.wasm": "MediatR.Contracts.wasm",
@@ -156,7 +156,7 @@
       "Blazored.SessionStorage.34xr2ein7y.wasm": "sha256-nQXuCGHos7iwp2WxRUgarKmWgJYChaVQp2NajgNU3V8=",
       "Blazorise.Licensing.5q2r77toij.wasm": "sha256-cwZ2JjZXwvbaPnMO5TRbPjB5RCR6BTjFabvKtE/wTnQ=",
       "Blazorise.ht7u75j5mi.wasm": "sha256-FY4BwMvBUhxqFp3mIv1YCGgMx8uyTBpOLHwTfQaqyWw=",
-      "capitalprint.4mtfosddws.wasm": "sha256-VKRGkEkEQcuQWb+akJVd527xqTxN1EccSZMCWUAZnzw=",
+      "capitalprint.v22ob1qwsy.wasm": "sha256-h0+5xnb0uA4mT3x2XB7KM1do04boUl6WB0BmbqLtVug=",
       "Fluxor.spaznd1495.wasm": "sha256-APyVBDq93FhhHXOm8kB0Guo/oYk+VcKmObk/+HK6CAI=",
       "JetBrains.Annotations.75veoqxomf.wasm": "sha256-K2Wvsx9NvmtkU4V07OCHCR0wmY6uNAnSuHp+KN2yAwc=",
       "MediatR.Contracts.f5sa8x1lz4.wasm": "sha256-/db+nahzjeSd5EhxUqFrpFzJ998Up6Vgs1PHrV3jqkU=",
