@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="theme-color" content="#722f37" />
-    <meta name="description" content="We Customize The Looks You Wear, While You Wear The Look You Wish! Explore our premium custom clothing and personalized fashion services, designed to match your unique style.">
+    <meta name="description" content="We Customize The Looks You Wear, While You Wear The Look You Wish! Discover unparalleled craftsmanship with our premium custom clothing and personalized fashion services. From bespoke tailoring to innovative designs, we create outfits that perfectly reflect your unique style and personality. Explore a world of fashion tailored just for you, where every detail is designed to turn heads and make lasting impressions. Experience the artistry of custom wear today!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>capitalprint</title>
     <!--<base href="/" />-->
@@ -153,20 +153,34 @@
     <script>
         const WHATSAPP_NUMBER = '+233244736472';
 
+        // Welcome popup close functionality
+        function closeWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            const overlay = document.getElementById('screenOverlay');
+            if (popup && overlay) {
+                popup.style.display = 'none'; // Close the popup
+                overlay.style.display = 'none'; // Remove the overlay
+                console.log("Welcome popup has been closed.");
+            } else {
+                console.error("Welcome popup or overlay element not found!");
+            }
+        }
+        // Order popup open functionality
         function OpenOrderPopup() {
             const popup = document.getElementById('orderPopup');
             if (popup) {
-                popup.style.display = 'block'; // Make the popup visible
+                popup.style.display = 'block'; // Make the order popup visible
                 console.log("Order popup is now visible.");
             } else {
                 console.error("Order popup element not found!");
             }
         }
 
+        // Order popup close functionality
         function closeOrderPopup() {
             const popup = document.getElementById('orderPopup');
             if (popup) {
-                popup.style.display = 'none'; // Hide the popup
+                popup.style.display = 'none'; // Hide the order popup
                 console.log("Order popup has been closed.");
             } else {
                 console.error("Order popup element not found!");
@@ -174,8 +188,8 @@
         }
 
         async function captureModalAndSend() {
-            const size = document.getElementById('sizeSelect').value || "Not Specified";
-            const itemCount = document.getElementById('itemCount').value;
+            const size = document.getElementById('sizeSelect')?.value || "Not Specified";
+            const itemCount = document.getElementById('itemCount')?.value;
 
             // Validate inputs
             if (!itemCount) {
@@ -203,8 +217,8 @@
                 // Capture the modal content
                 console.log("Capturing the modal...");
                 const canvas = await html2canvas(modalElement, {
-                    useCORS: true,
-                    scale: 3, // High resolution
+                    useCORS: true, // Handle cross-origin issues
+                    scale: 3, // High resolution capture
                     windowWidth: document.documentElement.clientWidth,
                     windowHeight: document.documentElement.clientHeight
                 });
@@ -239,7 +253,7 @@
 
                 // Navigate to WhatsApp immediately
                 console.log("Navigating to WhatsApp...");
-                window.open(whatsappUrl, '_blank');
+                window.open(whatsappUrl, '_blank'); // Direct navigation to WhatsApp
             } catch (error) {
                 console.error("Error capturing or uploading the modal:", error);
                 alert("An error occurred while processing your request. Please try again.");
@@ -247,6 +261,19 @@
                 closeOrderPopup(); // Close the order popup after submission
             }
         }
+
+        // Ensure the welcome popup displays on page load
+        window.onload = function () {
+            const popup = document.getElementById('welcomePopup');
+            const overlay = document.getElementById('screenOverlay');
+            if (popup && overlay) {
+                popup.style.display = 'block'; // Show the popup
+                overlay.style.display = 'block'; // Show the overlay to restrict content access
+                console.log("Welcome popup is now visible.");
+            } else {
+                console.error("Welcome popup or overlay element not found!");
+            }
+        };
     </script>
     <script>
         async function promptImageUpload() {
@@ -413,13 +440,38 @@
         }
     </style>
     <script>
-        function closeOrderPopup() {
-            const orderPopup = document.getElementById("orderPopup");
-            if (orderPopup) {
-                orderPopup.style.display = "none"; // Hide the order popup
-            }
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            // Add "New" Tag dynamically
+            const products = document.querySelectorAll(".product-item");
+
+            products.forEach((product) => {
+                const productName = product.querySelector(".description-heading").textContent;
+
+                // Check if "New" exists in the product name
+                if (productName.includes("New")) {
+                    const newTag = product.querySelector(".new-tag");
+                    newTag.style.display = "inline-block"; // Show the tag
+                }
+            });
+
+            // Save and load star ratings
+            const stars = document.querySelectorAll(".star-rating input");
+
+            stars.forEach((star) => {
+                // Load saved rating from localStorage
+                const savedRating = localStorage.getItem(star.name);
+                if (savedRating && star.value === savedRating) {
+                    star.checked = true; // Restore the saved rating
+                }
+
+                // Save the rating on click
+                star.addEventListener("change", (event) => {
+                    localStorage.setItem(event.target.name, event.target.value);
+                });
+            });
+        });
     </script>
+
 </body>
 
 </html>

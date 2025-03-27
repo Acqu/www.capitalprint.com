@@ -1,4 +1,5 @@
-﻿body {
+﻿/* Global Styles */
+body {
     margin: 0;
     font-family: Arial, sans-serif; /* Default font for cleaner visuals */
 }
@@ -20,9 +21,8 @@
         transform: scale(1.02); /* Slight scaling for active slide */
     }
 
-/* Thicker top border for carousel */
 .carousel {
-    border-top: 3px solid #ddd; /* Slightly thicker for emphasis */
+    border-top: 3px solid #ddd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
@@ -30,153 +30,155 @@
 .carousel-indicators li {
     width: 15px;
     height: 15px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    border: 2px solid #000; /* Black border for better visibility */
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 2px solid #000;
     border-radius: 50%;
-    margin: 0 4px; /* Spacing between dots */
+    margin: 0 4px;
     cursor: pointer;
     transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 
     .carousel-indicators li:hover {
-        transform: scale(1.2); /* Slight scaling for hover effect */
+        transform: scale(1.2);
     }
 
 .carousel-indicators .active {
     width: 20px;
     height: 20px;
-    background-color: #007bff; /* Blue for active indicator */
+    background-color: #007bff;
     border: 2px solid #000;
 }
 
-/* Horizontal Scroll Product Container */
-/* Horizontal Scroll Product Container for Small Screens */
+/* Product Grid Container */
 .product-grid-container {
-    display: flex;
-    overflow-x: auto; /* Enables horizontal scrolling */
-    gap: 10px; /* Reduced spacing for smaller screens */
-    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+    gap: 15px;
+    padding: 15px;
     background-color: #f9f9f9;
-    scrollbar-width: thin;
-    -ms-overflow-style: none; /* For Internet Explorer */
 }
 
-    .product-grid-container::-webkit-scrollbar {
-        height: 8px; /* Height of horizontal scrollbar */
-    }
-
-    .product-grid-container::-webkit-scrollbar-thumb {
-        background-color: #007bff; /* Blue scrollbar thumb */
-        border-radius: 10px; /* Rounded scrollbar */
-    }
-
-    .product-grid-container::-webkit-scrollbar-track {
-        background-color: #ddd; /* Light background for scrollbar track */
-    }
-
-/* Improved Grid Layout for Larger Screens */
-@media (min-width: 768px) {
+@media (max-width: 767px) {
     .product-grid-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
-        gap: 15px; /* Reduced gap for larger screens */
-        overflow-x: visible; /* Removes horizontal scrolling */
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto; /* Enables horizontal scrolling for small screens */
+        gap: 10px;
+        padding: 10px;
+        scrollbar-width: thin; /* For modern browsers */
+        -ms-overflow-style: none; /* For Internet Explorer */
     }
+
+        .product-grid-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .product-grid-container::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 10px;
+        }
+
+        .product-grid-container::-webkit-scrollbar-track {
+            background-color: #ddd;
+        }
 }
-/* Product Item */
+
+/* Product Item Styles */
 .product-item {
-    flex: 0 0 auto; /* Prevents items from wrapping to the next row */
-    width: 200px; /* Fixed width for each product */
+    position: relative; /* Allows placement of the "New" tag */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     text-align: center;
     border: 1px solid #ddd;
     padding: 15px;
     border-radius: 8px;
     background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in, box-shadow 0.3s ease-in-out;
+    width: 100%;
+    max-width: 250px;
 }
 
     .product-item:hover {
-        transform: scale(1.05); /* Slight zoom effect */
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2); /* Emphasized shadow on hover */
+        transform: scale(1.05);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
 
-/* Product Description Wrapping */
-.description {
-    white-space: nowrap; /* Keeps text on a single line */
-    overflow: hidden; /* Hides overflowing content */
-    text-overflow: ellipsis; /* Adds "..." for long text */
-    max-height: 30px; /* Short preview height */
-    line-height: 1.5;
-    margin-bottom: 10px; /* Adds spacing below the description */
+@media (max-width: 767px) {
+    .product-item {
+        max-width: 150px; /* Responsive for smaller screens */
+    }
 }
 
+/* Product Image */
 .product-img {
-    width: 100%; /* Ensures image fits within the product item */
-    height: 150px; /* Fixed height to maintain consistent sizing */
-    object-fit: contain; /* Scales the image proportionally */
-    margin-bottom: 10px; /* Space between image and description */
+    width: 100%;
+    height: auto; /* Adjust height proportionally */
+    max-height: 150px; /* Sets a reasonable maximum height for visibility */
+    object-fit: contain; /* Ensures the image scales proportionally without cropping */
     border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.color-options {
-    display: flex;
-    justify-content: center;
-    margin: 10px 0;
-}
-
-.color {
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-
-    .color:hover {
-        transform: scale(1.2);
-        border-color: #007bff;
+@media (max-width: 767px) {
+    .product-img {
+        max-height: 120px; /* Slightly smaller for small screens */
     }
+}
 
+/* Product Description - Preview Text */
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Display only 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." at the end for long text */
+    line-height: 1.5;
+    margin-bottom: 10px;
+    max-height: 3em; /* Ensures only 2 lines are shown */
+    font-size: 14px;
+    color: #333;
+    width: 100%; /* Maintains consistent width within the product card */
+}
+
+@media (max-width: 767px) {
+    .description {
+        -webkit-line-clamp: 1; /* Show only 1 line on smaller screens */
+        max-height: 1.5em; /* Reduces height to fit just one line */
+        font-size: 13px; /* Slightly smaller font for better spacing */
+    }
+}
+
+/* Product Description - Full Text Inside Modal */
+.modal-description {
+    white-space: normal; /* Allows full wrapping */
+    overflow: visible; /* No truncation */
+    line-height: 1.5;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Call-to-Action Button */
 .uniform-btn {
     display: block;
-    width: 80%; /* Adjust button width to fit neatly */
-    padding: 8px 12px;
+    width: 90%; /* Set uniform width to ensure alignment */
+    padding: 10px 12px;
     font-size: 14px;
-    text-align: center; /* Centers text within the button */
-    margin: 10px auto; /* Centers the button horizontally within its container */
+    text-align: center;
+    margin: 10px auto 0; /* Center horizontally and maintain spacing */
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    overflow: hidden; /* Prevents text from spilling out of the button */
-    white-space: nowrap; /* Keeps text on a single line */
-    text-overflow: ellipsis; /* Adds "..." if text overflows */
     transition: background-color 0.3s ease-in-out;
 }
 
     .uniform-btn:hover {
-        background-color: #0056b3; /* Darker blue on hover */
+        background-color: #0056b3;
     }
-
-.product-item {
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center;
-    justify-content: space-between; /* Space out the elements */
-    text-align: center; /* Centers content horizontally */
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    transition: transform 0.3s ease-in, box-shadow 0.3s ease-in-out;
-}
-
 
 /* Social Media Animation */
 .social-media-animation {
@@ -186,16 +188,89 @@
 }
 
 .social-icon {
-    font-size: 24px; /* Size of the icons */
-    color: #333; /* Default color */
-    margin: 0 15px; /* Space between icons */
+    font-size: 16px;
+    color: #f6873f;
+    margin: 0 15px;
     transition: transform 0.3s, color 0.3s ease-in-out;
 }
 
     .social-icon:hover {
-        transform: scale(1.2); /* Scale up on hover */
-        color: #007bff; /* Change color on hover */
+        transform: scale(1.2);
+        color: #007bff;
     }
+
+
+/* New Tag */
+.new-tag {
+    position: absolute;
+    top: 10px; /* Adjust position */
+    left: 10px;
+    background-color: #ff0000; /* Bright red tag */
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Ensures it stays on top */
+}
+
+/* Star Rating */
+.star-rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 5px; /* Space between stars */
+}
+
+    .star-rating input {
+        display: none; /* Hide the radio inputs */
+    }
+
+    .star-rating label {
+        font-size: 20px; /* Star size */
+        color: #ccc; /* Default star color */
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #ffcc00; /* Highlight stars on hover */
+        }
+
+    .star-rating input:checked ~ label {
+        color: #ffcc00; /* Highlight selected stars */
+    }
+
+#orderPopup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 35%;
+    width: 30%; /* Default width for larger screens */
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds subtle shadow for a modern look */
+    z-index: 2000;
+    border-radius: 8px; /* Optional: Smoothly rounded corners */
+}
+
+@media (max-width: 768px) {
+    #orderPopup {
+        width: 50%; /* Adjust width for medium screens */
+        left: 25%; /* Center alignment */
+    }
+}
+
+@media (max-width: 480px) {
+    #orderPopup {
+        width: 70%; /* Adjust width for smaller screens */
+        left: 15%; /* Center alignment */
+    }
+}
 
 /* Modal Styling */
 .modal {
@@ -204,7 +279,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,33 +295,14 @@
     background-color: #fff;
     padding: 1rem;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
-    position: relative; /* Allows positioning of child elements */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Close Button Styling */
-.close-btn {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    font-size: 24px;
-    font-weight: bold;
-    border: none;
-    background: none;
-    color: #333;
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-}
-
-    .close-btn:hover {
-        color: #ff0000; /* Red color on hover */
-    }
-
-/* Navigation Buttons Styling */
+/* Navigation Buttons */
 .nav-btn {
     background-color: #007bff;
     border: none;
-    color: #fff;
+    color: #f6873f;
     font-size: 1.2rem;
     width: 40px;
     height: 40px;
@@ -257,29 +313,12 @@
 
     .nav-btn:hover {
         background-color: #0056b3;
-        transform: scale(1.1); /* Enlarged for hover focus */
+        transform: scale(1.1);
     }
 
-.left-btn {
-    margin-right: 10px; /* Spacing for left navigation button */
-}
-
-.right-btn {
-    margin-left: 10px; /* Spacing for right navigation button */
-}
-
-/* Modal Image Styling */
-.modal-image {
-    width: 100%;
-    max-height: 300px;
-    object-fit: contain;
-    margin-bottom: 1rem;
-}
-
-/* Modal Footer Styling */
+/* Modal Footer */
 .modal-footer {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
 }
-
