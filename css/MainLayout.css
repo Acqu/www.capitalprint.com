@@ -10,7 +10,10 @@
     min-height: 100vh;
     background-color: #f9f9f9;
 }
-
+.main-layout {
+    display: flex !important;
+    flex-direction: column !important;
+}
 /* Header Styling */
 header {
     display: flex;
@@ -64,16 +67,16 @@ header {
     transition: background-color 0.3s ease-in-out;
 }
 
-.location-btn:hover,
-.help-btn:hover {
-    background-color: #ff69b4; /* Lighter pink for hover */
-}
+    .location-btn:hover,
+    .help-btn:hover {
+        background-color: #ff69b4; /* Lighter pink for hover */
+    }
 
-.location-btn i,
-.help-btn i {
-    margin-right: 5px;
-    font-size: 18px; /* Adjusted size for uniformity */
-}
+    .location-btn i,
+    .help-btn i {
+        margin-right: 5px;
+        font-size: 18px; /* Adjusted size for uniformity */
+    }
 
 /* Header Content */
 .header-content {
@@ -115,11 +118,11 @@ header {
     font-size: small;
 }
 
-.contact-info i,
-.chat-info i {
-    font-size: 22px;
-    margin-bottom: 5px;
-}
+    .contact-info i,
+    .chat-info i {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
 
 .phone-link,
 .chat-link {
@@ -128,10 +131,10 @@ header {
     text-decoration: none;
 }
 
-.phone-link:hover,
-.chat-link:hover {
-    text-decoration: underline;
-}
+    .phone-link:hover,
+    .chat-link:hover {
+        text-decoration: underline;
+    }
 
 /* Navigation Bar */
 .nav-container {
@@ -167,6 +170,7 @@ header {
     text-decoration: none;
     padding: 5px; /* Adjust padding to reduce space further */
     display: inline-block;
+    color: #9b3f58;
 }
 
 .dropdown {
@@ -235,6 +239,12 @@ header {
         color: #f6873f;
     }
 
+@media (max-width: 768px) {
+    .top-banner-right {
+        display: none;
+    }
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
     .menu-toggle {
@@ -255,9 +265,9 @@ header {
         background-color: #fff;
     }
 
-    .nav.active {
-        display: flex;
-    }
+        .nav.active {
+            display: flex;
+        }
 
     .header-content {
         flex-direction: column;
