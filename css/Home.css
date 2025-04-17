@@ -1,7 +1,8 @@
 ﻿/* Global Styles */
 body {
     margin: 0;
-    font-family: Arial, sans-serif; /* Default font for cleaner visuals */
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Set the entire page background to white */
 }
 
 /* Carousel Styles */
@@ -9,64 +10,63 @@ body {
     height: auto;
     width: 100%;
     object-fit: cover;
-    border-radius: 5px; /* Subtle rounding for modern look */
+    border-radius: 5px;
 }
 
 .carousel-item {
-    transition: opacity 1.5s ease-in-out, transform 0.3s ease-in;
+    transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
 }
 
     .carousel-item.active {
         opacity: 1;
-        transform: scale(1.02); /* Slight scaling for active slide */
+        transform: scale(1.05);
     }
 
 .carousel {
     border-top: 3px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Dot Indicators */
 .carousel-indicators li {
-    width: 15px;
-    height: 15px;
-    background-color: rgba(255, 255, 255, 0.8);
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
     border: 2px solid #000;
     border-radius: 50%;
-    margin: 0 4px;
+    margin: 0 5px;
     cursor: pointer;
-    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
     .carousel-indicators li:hover {
-        transform: scale(1.2);
+        transform: scale(1.3);
     }
 
 .carousel-indicators .active {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-color: #007bff;
-    border: 2px solid #000;
 }
 
 /* Product Grid Container */
 .product-grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 15px;
     padding: 15px;
-    background-color: #f9f9f9;
+    background-color: #ffffff; /* Ensure the product grid container also has a white background */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .product-grid-container {
         display: flex;
         flex-wrap: nowrap;
-        overflow-x: auto; /* Enables horizontal scrolling for small screens */
+        overflow-x: auto;
         gap: 10px;
         padding: 10px;
-        scrollbar-width: thin; /* For modern browsers */
-        -ms-overflow-style: none; /* For Internet Explorer */
+        scrollbar-width: thin;
+        -ms-overflow-style: none;
     }
 
         .product-grid-container::-webkit-scrollbar {
@@ -83,78 +83,60 @@ body {
         }
 }
 
-/* Product Item Styles */
-.product-item {
-    position: relative; /* Allows placement of the "New" tag */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+/* Subcategory Card */
+.subcategory-item {
+    position: relative;
+    padding: 20px;
     text-align: center;
     border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in, box-shadow 0.3s ease-in-out;
-    width: 100%;
-    max-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .product-item:hover {
+    .subcategory-item:hover {
         transform: scale(1.05);
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
-
-@media (max-width: 767px) {
-    .product-item {
-        max-width: 150px; /* Responsive for smaller screens */
-    }
-}
-
-/* Product Image */
-.product-img {
+/* Updated subcategory image styling:
+   Removed CSS transition to avoid conflict with jQuery fade effects */
+.subcategory-img {
     width: 100%;
-    height: auto; /* Adjust height proportionally */
-    max-height: 150px; /* Sets a reasonable maximum height for visibility */
-    object-fit: contain; /* Ensures the image scales proportionally without cropping */
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
     border-radius: 5px;
-    margin-bottom: 10px;
+    opacity: 1;
 }
 
-@media (max-width: 767px) {
-    .product-img {
-        max-height: 120px; /* Slightly smaller for small screens */
+@media (max-width: 768px) {
+    .subcategory-item {
+        max-width: 180px;
     }
 }
 
-/* Product Description - Preview Text */
+/* Product Description Preview */
 .description {
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Display only 2 lines */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis; /* Adds "..." at the end for long text */
+    text-overflow: ellipsis;
     line-height: 1.5;
-    margin-bottom: 10px;
-    max-height: 3em; /* Ensures only 2 lines are shown */
     font-size: 14px;
     color: #333;
-    width: 100%; /* Maintains consistent width within the product card */
+    width: 100%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .description {
-        -webkit-line-clamp: 1; /* Show only 1 line on smaller screens */
-        max-height: 1.5em; /* Reduces height to fit just one line */
-        font-size: 13px; /* Slightly smaller font for better spacing */
+        -webkit-line-clamp: 1;
+        font-size: 13px;
     }
 }
 
-/* Product Description - Full Text Inside Modal */
+/* Full Description Inside Modal */
 .modal-description {
-    white-space: normal; /* Allows full wrapping */
-    overflow: visible; /* No truncation */
     line-height: 1.5;
     font-size: 14px;
     color: #333;
@@ -163,114 +145,23 @@ body {
 /* Call-to-Action Button */
 .uniform-btn {
     display: block;
-    width: 90%; /* Set uniform width to ensure alignment */
-    padding: 10px 12px;
+    width: 90%;
+    padding: 12px;
     font-size: 14px;
     text-align: center;
-    margin: 10px auto 0; /* Center horizontally and maintain spacing */
+    margin: 10px auto;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
     .uniform-btn:hover {
         background-color: #0056b3;
+        transform: scale(1.05);
     }
-
-/* Social Media Animation */
-.social-media-animation {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-.social-icon {
-    font-size: 16px;
-    color: #f6873f;
-    margin: 0 15px;
-    transition: transform 0.3s, color 0.3s ease-in-out;
-}
-
-    .social-icon:hover {
-        transform: scale(1.2);
-        color: #007bff;
-    }
-
-
-/* New Tag */
-.new-tag {
-    position: absolute;
-    top: 10px; /* Adjust position */
-    left: 10px;
-    background-color: #ff0000; /* Bright red tag */
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 3px 8px;
-    border-radius: 5px;
-    text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 10; /* Ensures it stays on top */
-}
-
-/* Star Rating */
-.star-rating {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    gap: 5px; /* Space between stars */
-}
-
-    .star-rating input {
-        display: none; /* Hide the radio inputs */
-    }
-
-    .star-rating label {
-        font-size: 20px; /* Star size */
-        color: #ccc; /* Default star color */
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-
-        .star-rating label:hover,
-        .star-rating label:hover ~ label {
-            color: #ffcc00; /* Highlight stars on hover */
-        }
-
-    .star-rating input:checked ~ label {
-        color: #ffcc00; /* Highlight selected stars */
-    }
-
-#orderPopup {
-    display: none;
-    position: fixed;
-    top: 20%;
-    left: 35%;
-    width: 30%; /* Default width for larger screens */
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds subtle shadow for a modern look */
-    z-index: 2000;
-    border-radius: 8px; /* Optional: Smoothly rounded corners */
-}
-
-@media (max-width: 768px) {
-    #orderPopup {
-        width: 50%; /* Adjust width for medium screens */
-        left: 25%; /* Center alignment */
-    }
-}
-
-@media (max-width: 480px) {
-    #orderPopup {
-        width: 70%; /* Adjust width for smaller screens */
-        left: 15%; /* Center alignment */
-    }
-}
 
 /* Modal Styling */
 .modal {
@@ -298,27 +189,188 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Navigation Buttons */
-.nav-btn {
-    background-color: #007bff;
-    border: none;
-    color: #f6873f;
-    font-size: 1.2rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease;
-}
-
-    .nav-btn:hover {
-        background-color: #0056b3;
-        transform: scale(1.1);
-    }
-
-/* Modal Footer */
 .modal-footer {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
 }
+.image-container {
+    position: relative;
+}
+
+.left-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 24px;
+    padding: 10px;
+}
+
+.right-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 24px;
+    padding: 10px;
+}
+
+/* Floating Carousel */
+.floating-carousel {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    white-space: nowrap; /* Prevent line breaks */
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    touch-action: pan-x; /* Allow horizontal touch scrolling */
+    scrollbar-width: thin; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer */
+}
+
+    .floating-carousel::-webkit-scrollbar {
+        height: 0px; /* Height of the scrollbar */
+    }
+
+    .floating-carousel::-webkit-scrollbar-thumb {
+        background-color: #007bff; /* Scrollbar thumb color */
+        border-radius: 25px;
+    }
+
+    .floating-carousel::-webkit-scrollbar-track {
+        background-color: white; /* Scrollbar track color */
+    }
+
+.floating-carousel-track {
+    display: flex; /* Use flexbox for horizontal alignment */
+    gap: 15px; /* Space between images */
+}
+
+    .floating-carousel-track img {
+        width: 130px; /* Set a fixed width for all images */
+        height: 120px; /* Set a fixed height for all images */
+        object-fit: cover; /* Ensure images are not skewed */
+        border-radius: 70px; /* Optional: Add rounded corners */
+        border: 2px solid #722f37; /* Add a border for styling */
+        transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+    }
+
+        .floating-carousel-track img:hover {
+            transform: scale(2.1); /* Slightly enlarge the image on hover */
+        }
+
+@media (max-width: 768px) {
+    .subcategory-img {
+        max-height: 120px;
+    }
+}
+/* Ensure the toggle button is hidden on larger screens */
+.menu-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Show only the toggle button on smaller screens */
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hide nav links */
+    .nav {
+        display: none !important;
+    }
+        /* When nav has active class, show it as a dropdown */
+        .nav.active {
+            display: flex !important;
+            flex-direction: column;
+        }
+
+    /* Hide contact info and chat info */
+    .contact-info,
+    .chat-info,
+    .top-banner-right {
+        display: none !important;
+    }
+}
+
+.product-grid-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.product-grid {
+    display: inline-block;
+}
+
+.product-item {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.contact-info,
+.chat-info {
+    font-size: 0.8rem;
+}
+
+    .contact-info i,
+    .chat-info i {
+        font-size: 0.8rem;
+    }
+
+.footer-changing-text {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+/* Floating Easter Cartoon with Animated Message - Scaled Down */
+.floating-cartoon {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+    width: 80px; /* reduced 50% from 100px */
+    height: 80px; /* reduced 50% from 100px */
+    perspective: 500px;
+    animation: bounce 3s ease-in-out infinite;
+}
+
+    .floating-cartoon .cartoon {
+        width: 100%;
+        height: auto;
+        display: block;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes rotate3d {
+    0% {
+        transform: translate(-25%, -25%) rotateY(0deg) rotateX(0deg);
+    }
+
+    100% {
+        transform: translate(-25%, -25%) rotateY(360deg) rotateX(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+   
+

@@ -132,3 +132,48 @@ button, .btn {
     transform: rotate(360deg);
     transition: transform 1s ease;
 }
+/*//service section for the list of services we have outlined.. horizontally */
+.services-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.services-section li {
+    margin-right: 20px;
+}
+
+    .services-section li:last-child {
+        margin-right: 0;
+    }
+
+/* Ensure the banner image scales properly on smaller screens */
+.banner-image {
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width: 768px) {
+    .banner-image {
+        height: 200px; /* Reduce height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-image {
+        height: 150px; /* Further reduce height for very small screens */
+    }
+}
+
+/* Ensure any other images in the solution page are responsive */
+.about-section img {
+    max-width: 100%; /* Ensure the image does not exceed its container width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove inline-block spacing issues */
+    margin: 0 auto; /* Center the image */
+}
