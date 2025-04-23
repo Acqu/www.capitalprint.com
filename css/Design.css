@@ -123,3 +123,36 @@
         grid-template-columns: 1fr;
     }
 }
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 1.2em;
+    margin: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    padding: 0;
+}
+
+    .btn-icon:hover {
+        background-color: #e9ecef;
+    }
+.button-group {
+    margin: 0; /* Remove negative margin */
+    display: flex;
+    flex-wrap: wrap; /* Ensure buttons wrap to the next row if needed */
+    justify-content: space-between; /* Distribute buttons evenly */
+}
+
+    .button-group .col-3 {
+        padding: 2px; /* Add consistent padding between buttons */
+        flex: 0 0 25%; /* Ensure each button takes up 25% of the row */
+        max-width: 25%; /* Ensure proper alignment */
+    }
+
+
+
