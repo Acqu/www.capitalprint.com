@@ -142,10 +142,9 @@
         background-color: #e9ecef;
     }
 .button-group {
-    margin: 0; /* Remove negative margin */
     display: flex;
     flex-wrap: wrap; /* Ensure buttons wrap to the next row if needed */
-    justify-content: space-between; /* Distribute buttons evenly */
+    justify-content:normal; /* Distribute buttons evenly */
 }
 
     .button-group .col-3 {
