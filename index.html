@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#722f37" />
     <meta name="description" content="We Customize The Looks You Wear, While You Wear The Look You Wish! Discover unparalleled craftsmanship with our premium custom clothing and personalized fashion services. From bespoke tailoring to innovative designs, we create outfits that perfectly reflect your unique style and personality. Explore a world of fashion tailored just for you, where every detail is designed to turn heads and make lasting impressions. Experience the artistry of custom wear today!">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-adsense-account" content="ca-pub-6180157732495792">
     <title>capitalprint</title>
     <!--<base href="/" />-->
     <link rel="icon" href="./favicon.ico">
@@ -110,6 +111,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix"></script>
+    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -339,10 +341,10 @@
                 const productName = document.querySelector('#productModal .modal-title')?.innerText || 'CapitalPrint Products';
 
                 // Generate WhatsApp order message
-                const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${size}\nQuantity: ${itemCount}\nModal Image: ${imageUrl}`;
+                const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${selectedSize}\nQuantity: ${itemCount}\nPrice: GHS ${price}\nDesign Image: ${imageUrl}`;
                 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
 
-                console.log("Navigating to WhatsApp...");
+                console.log("Placing Your Order, Please Wait \nNavigating to WhatsApp...");
                 window.open(whatsappUrl, '_blank');
             } catch (error) {
                 console.error("Error capturing or uploading the modal:", error);
@@ -526,7 +528,7 @@
 
                     if (!response.ok) {
                         const errorText = await response.text();
-                        throw new Error(`Failed to remove background: ${errorText}`);
+                        throw new Error(`Failed to remove background try Blending Feature: ${errorText}`);
                     }
 
                     const blob = await response.blob();
@@ -692,34 +694,127 @@
         };
 
         // Enhanced Transform Tools - Simulated 3D transform via skew
-        window.initialize3DScene = (canvasId, imageUrl) => {
-            const canvas = document.getElementById(canvasId);
-            const renderer = new THREE.WebGLRenderer({ canvas });
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-            camera.position.z = 2;
-
-            const textureLoader = new THREE.TextureLoader();
-            textureLoader.load(imageUrl, (texture) => {
-                const geometry = new THREE.BoxGeometry(1, 1, 1); // Cube geometry
-                const material = new THREE.MeshBasicMaterial({ map: texture });
-                const cube = new THREE.Mesh(geometry, material);
-                scene.add(cube);
-
-                // Add orbit controls for interaction
-                const controls = new THREE.OrbitControls(camera, renderer.domElement);
-
-                const animate = () => {
-                    requestAnimationFrame(animate);
-                    controls.update();
-                    renderer.render(scene, camera);
-                };
-                animate();
-            });
+        window.toggle3DMode = function () {
+            const canvas = window.fabricCanvas;
+            if (!canvas) {
+                alert("Canvas not available.");
+                return;
+            }
+            // If not already in 3D mode, activate it
+            if (!canvas.__is3DModeEnabled) {
+                const bg = canvas.backgroundImage;
+                if (!bg) {
+                    alert("No background image available.");
+                    return;
+                }
+                // Save original background image source
+                canvas.__bgOriginalUrl = (typeof bg.getSrc === "function") ? bg.getSrc() : null;
+                // Remove the background image from canvas (it won't appear among objects)
+                canvas.setBackgroundImage(null, canvas.renderAll.bind(canvas));
+                // Promote the background image as an object
+                fabric.Image.fromURL(canvas.__bgOriginalUrl, function (bgImg) {
+                    bgImg.set({
+                        originX: 'center',
+                        originY: 'center',
+                        selectable: false
+                    });
+                    // Scale back to canvas size
+                    bgImg.scaleToWidth(canvas.width);
+                    // Collect all objects already on canvas
+                    const objects = canvas.getObjects();
+                    // Create a group with the promoted background and all canvas objects
+                    const group = new fabric.Group([bgImg, ...objects], {
+                        left: canvas.width / 2,
+                        top: canvas.height / 2,
+                        originX: 'center',
+                        originY: 'center'
+                    });
+                    // Clear canvas and add the group
+                    canvas.clear();
+                    canvas.add(group);
+                    canvas.__activeGroup = group;
+                    canvas.__is3DModeEnabled = true;
+                    canvas.renderAll();
+                });
+            } else {
+                // Deactivate 3D mode: Ungroup to restore individual objects
+                const group = canvas.__activeGroup;
+                if (!group) {
+                    return;
+                }
+                const objects = group._objects;
+                group.destroy();
+                canvas.clear();
+                // Restore original background image
+                if (canvas.__bgOriginalUrl) {
+                    fabric.Image.fromURL(canvas.__bgOriginalUrl, function (bgImg) {
+                        bgImg.set({
+                            originX: 'left',
+                            originY: 'top',
+                            selectable: false
+                        });
+                        canvas.setBackgroundImage(bgImg, canvas.renderAll.bind(canvas), {
+                            scaleX: canvas.width / bgImg.width,
+                            scaleY: canvas.height / bgImg.height
+                        });
+                    });
+                }
+                // Add back the ungrouped objects
+                objects.forEach(function (obj) {
+                    canvas.add(obj);
+                });
+                canvas.__is3DModeEnabled = false;
+                canvas.renderAll();
+            }
+        };
+        // Disable 3D mode if it was enabled
+        window.disable3DMode = function () {
+            const canvas = window.fabricCanvas;
+            if (canvas && canvas.__is3DModeEnabled) {
+                // Call our existing toggle function to disable 3D mode
+                window.toggle3DMode();
+            }
         };
 
+        window.flipHorizontal = function () {
+            const canvas = window.fabricCanvas;
+            const activeObj = canvas.getActiveObject();
+            if (activeObj) {
+                activeObj.set('flipX', !activeObj.flipX);
+                canvas.renderAll();
+                window.fabricSaveHistory();
+            }
+        };
+
+        window.flipVertical = function () {
+            const canvas = window.fabricCanvas;
+            const activeObj = canvas.getActiveObject();
+            if (activeObj) {
+                activeObj.set('flipY', !activeObj.flipY);
+                canvas.renderAll();
+                window.fabricSaveHistory();
+            }
+        };
+
+        window.rotateLeft = function () {
+            const canvas = window.fabricCanvas;
+            const activeObj = canvas.getActiveObject();
+            if (activeObj) {
+                activeObj.rotate((activeObj.angle || 0) - 15);
+                canvas.renderAll();
+                window.fabricSaveHistory();
+            }
+        };
+
+        window.rotateRight = function () {
+            const canvas = window.fabricCanvas;
+            const activeObj = canvas.getActiveObject();
+            if (activeObj) {
+                activeObj.rotate((activeObj.angle || 0) + 15);
+                canvas.renderAll();
+                window.fabricSaveHistory();
+            }
+        };
         // Drawing and Freehand Features
 
         // Enable custom free-drawing brush with adjustable settings
@@ -727,10 +822,16 @@
             window.fabricCanvas.isDrawingMode = true;
             window.fabricCanvas.freeDrawingBrush = new fabric.PencilBrush(window.fabricCanvas);
             window.fabricCanvas.freeDrawingBrush.color = prompt("Enter brush color:", "red") || "red";
-            window.fabricCanvas.freeDrawingBrush.width = parseInt(prompt("Enter brush width:", "5"), 10) || 5;
+            window.fabricCanvas.freeDrawingBrush.width = parseInt(prompt("Enter brush width:", "5", "5.5", "10", "10.1"), 10) || 5;
             alert("Drawing mode activated. To exit, disable drawing mode.");
         };
-
+        // Disable custom brush mode
+        window.disableCustomBrush = function () {
+            if (window.fabricCanvas) {
+                window.fabricCanvas.isDrawingMode = false;
+                alert("Drawing mode disabled.");
+            }
+        };
         // Eraser tool - simulate erasing by setting the brush color to white
         window.UseEraser = function () {
             window.fabricCanvas.isDrawingMode = true;
@@ -809,7 +910,7 @@
                 window.fabricCanvas.renderAll();
                 window.fabricSaveHistory();
             } else {
-                alert("No object selected to delete.");
+                alert("No object selected to delete!.");
             }
         };
         // Modify the cropping tool to allow full movement and scaling.
@@ -1154,7 +1255,6 @@
             opacity: 0;
         }
     </style>
-
 </body>
 
 </html >

@@ -10,6 +10,7 @@
     min-height: 100vh;
     background-color: #f9f9f9;
 }
+
 .main-layout {
     display: flex !important;
     flex-direction: column !important;
