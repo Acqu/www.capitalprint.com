@@ -84,6 +84,7 @@ body {
         }
         /* Ensure text inside product grid wraps properly */
         .product-grid-container h5,
+        /* Ensure description text in the product grid container wraps */
         .product-grid-container p,
         .product-grid-container .description {
             word-wrap: break-word;
@@ -158,8 +159,8 @@ body {
     font-size: 14px;
     text-align: center;
     margin: 10px auto;
-    background-color: #007bff;
-    color: #fff;
+    background-color: Orange;
+    color: Orange;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -170,7 +171,14 @@ body {
         background-color: #0056b3;
         transform: scale(1.05);
     }
-
+/* Category Header Styling */
+.section-header {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 24px;
+    margin: 20px 15px;
+    font-weight: bold;
+    color: #999; /* faint grey */
+}
 /* Modal Styling */
 .modal {
     position: fixed;
@@ -202,28 +210,79 @@ body {
     justify-content: space-between;
     padding: 0.5rem;
 }
+
 .image-container {
     position: relative;
 }
 
-.left-btn {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    font-size: 24px;
-    padding: 10px;
+/* Modal Styling - Increase modal width */
+.modal-dialog {
+    width: 90%;
+    max-width: 700px;
 }
 
+/* left and right navigation buttons overlayed on the main image */
+.main-image {
+    position: relative;
+}
+/* Main image container styling */
+.main-image-container {
+    position: relative;
+    text-align: center;
+}
+
+/* Style for the main modal image */
+.main-modal-image {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Navigation buttons overlayed on the main image */
+.left-btn,
 .right-btn {
     position: absolute;
     top: 50%;
-    right: 0;
     transform: translateY(-50%);
     font-size: 24px;
     padding: 10px;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 3;
 }
 
+.left-btn {
+    left: 10px;
+}
+
+.right-btn {
+    right: 10px;
+}
+
+/* Thumbnail images styling */
+.thumbnail-modal-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+/* Place Order Button */
+.place-order-btn {
+    background-color: orange;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+    .place-order-btn:hover {
+        background-color: darkorange;
+    }
 /* Floating Carousel */
 .floating-carousel-track {
     display: flex; /* Arrange items horizontally */
@@ -408,19 +467,57 @@ body {
     }
 }
 
-.product-grid-container {
+/* Overall container for categories */
+.product-categories {
+    padding: 15px;
+    background-color: #ffffff; /* Ensures white background */
+}
+
+/* Section header style */
+.section-header {
+    font-size: 24px;
+    margin: 20px 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Container for each category section (horizontally scrollable) */
+.section-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
     overflow-x: auto;
-    white-space: nowrap;
+    padding: 15px;
 }
 
-.product-grid {
-    display: inline-block;
-}
-
-.product-item {
-    display: inline-block;
+/* Ensure each product card maintains its width */
+.subcategory-item {
+    flex: 0 0 350px !important; /* fixed width; adjust as needed */
+    min-width: 350px !important;
     vertical-align: top;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-right: 15px;
 }
+
+    .subcategory-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }   
+
+/* Keep existing subcategory image rules */
+.subcategory-img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
 
 .contact-info,
 .chat-info {
@@ -550,6 +647,68 @@ footer {
     margin-left: 10px;
     font-size: small;
 }
+/* Container for product details beneath each image */
+.subcategory-item .product-details {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Style for the product price */
+.product-price {
+    font-size: 16px;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Star Rating Styles */
+.star-rating {
+    direction: rtl; /* Make stars appear from right-to-left */
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #ccc;
+        cursor: pointer;
+        margin: 0 2px;
+    }
+
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: gold;
+        }
+
+/* New Tag Styles */
+.new-tag {
+    display: none; /* Hidden by default; JS shows/hides based on product name */
+    font-size: 12px;
+    background-color: red;
+    color: white;
+    padding: 2px 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+/* Example CSS for thumbnail variations */
+.thumbnail-modal-image.original-thumbnail {
+    filter: none;
+}
+
+.thumbnail-modal-image.grayscale-thumbnail {
+    filter: grayscale(100%);
+}
+
+.thumbnail-modal-image.sepia-thumbnail {
+    filter: sepia(100%);
+}
+
+
 
 
    
