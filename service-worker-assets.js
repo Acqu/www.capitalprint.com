@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "i5i++Srq",
+  "version": "U2h1899k",
   "assets": [
     {
       "hash": "sha256-GkRygJeYbqIcvTK6qUO6QfY5jSC8ko0c1ERUevhc5q8=",
@@ -230,6 +230,10 @@ self.assetsManifest = {
       "url": "Images/jackets/jyello.png"
     },
     {
+      "hash": "sha256-fnqJeGnpABjreEn1CEFGVkvaIPvTmE9eHj11cdaKMJA=",
+      "url": "Images/labour-day-2025-6753651837110708.2-l.png"
+    },
+    {
       "hash": "sha256-u/mZO7zB5XmmOAOhIZKqZQXCzd8ghg11uL1gRljfKTo=",
       "url": "Images/maxresdefault.jpg"
     },
@@ -294,6 +298,14 @@ self.assetsManifest = {
       "url": "Images/totebags/tote5.png"
     },
     {
+      "hash": "sha256-UU36P2JGRnoXGRq/m0fmMXO+7UwwDd1Q5Kzdt01vse4=",
+      "url": "Images/tshirts/3y3 zu black f.png"
+    },
+    {
+      "hash": "sha256-bdDWiwinHkyk2hD7zhpojFgKxLuRm3jfoJKYZDDelOE=",
+      "url": "Images/tshirts/3y3 zu mock up f.png"
+    },
+    {
       "hash": "sha256-euM4RN7C/rADZDjzt3UJ6uxu1O6YSqQ4TOQDsKlRjwk=",
       "url": "Images/tshirts/GR03.png"
     },
@@ -334,12 +346,100 @@ self.assetsManifest = {
       "url": "Images/tshirts/green.png"
     },
     {
+      "hash": "sha256-DraC1LTFPSwAsNnqrWvNLMmfyOOeCvh8KsiM37j6tZ8=",
+      "url": "Images/tshirts/kivo polo.jpg"
+    },
+    {
       "hash": "sha256-W+ZK6oJALxzMJuBvKW/z8DQCwM9fottenkccL+pBFBo=",
       "url": "Images/tshirts/orange.png"
     },
     {
       "hash": "sha256-a70SdviFteXYiRpBdLlhfzj5bDm9EoSvExJU8HN8A24=",
       "url": "Images/tshirts/red.png"
+    },
+    {
+      "hash": "sha256-kMJyAQSybpky0GN8N70TPBpPahItElB13qm1Rn70dh4=",
+      "url": "Images/tshirts/s16.png"
+    },
+    {
+      "hash": "sha256-YY5Hm4I8iOfuMGwHT+dqLbBERY7YJOk0dp1MhQA5E68=",
+      "url": "Images/tshirts/s17.png"
+    },
+    {
+      "hash": "sha256-4lSOghYJ5hCYMYMGldDUf5GKrYJZb52M2PvMfEb19oI=",
+      "url": "Images/tshirts/s18.png"
+    },
+    {
+      "hash": "sha256-RDRjNXBBIcSGllbOasW0Jj7StmqgRr417qgXJq5hHn0=",
+      "url": "Images/tshirts/s19.png"
+    },
+    {
+      "hash": "sha256-IBusEPlZk94xB3Im0apwciySc2UeGMFHpBCTBAkiYXA=",
+      "url": "Images/tshirts/s20.png"
+    },
+    {
+      "hash": "sha256-KW5uniTEolWmth3vlrkPFOsjXoVvD2FcNaTdquJhWLo=",
+      "url": "Images/tshirts/s21.png"
+    },
+    {
+      "hash": "sha256-n+eCGIq3NqzlytsiSufl3KRvRTYj3LYAAn7p/kJdauQ=",
+      "url": "Images/tshirts/s22.png"
+    },
+    {
+      "hash": "sha256-3tZEBM5P5sHXaGfLCm2o7TvnuUDVzJwzfr1IjUFjEfY=",
+      "url": "Images/tshirts/s23.png"
+    },
+    {
+      "hash": "sha256-zmjOvkXoVTP3jWj1d13D2kBcnuevUklq+fKL3h2YBx4=",
+      "url": "Images/tshirts/s24.png"
+    },
+    {
+      "hash": "sha256-9tbHrwJKP3uMNIE26kcEy1BlbtgMcELLTDPqkSlMOLY=",
+      "url": "Images/tshirts/s25.png"
+    },
+    {
+      "hash": "sha256-5ncOb4FJ3eojvSi31xkMQ/ugCD++7/An7O8vPORCI50=",
+      "url": "Images/tshirts/s26.png"
+    },
+    {
+      "hash": "sha256-lJqq3GuvmxDfJ2CgeXSUGknESa6FbWfAg70apJ5+u9I=",
+      "url": "Images/tshirts/s27.png"
+    },
+    {
+      "hash": "sha256-fbKjs6VLCQFgUVj/cA8HNNuBOCPufgNRpSLPLjLswas=",
+      "url": "Images/tshirts/s28.png"
+    },
+    {
+      "hash": "sha256-kKmPdgs2jruKT4udJeC9mylX/x2wFq+pjD5xs54e2O8=",
+      "url": "Images/tshirts/s29.png"
+    },
+    {
+      "hash": "sha256-lFEzIz27+o7YMiCxTnWekHYPhEEe9Ued/5AuZivecRM=",
+      "url": "Images/tshirts/s30.png"
+    },
+    {
+      "hash": "sha256-32aFJy1VanlOY/vkSkn6OTIWdLYhMRjW/QK0AXb0DDQ=",
+      "url": "Images/tshirts/s31.png"
+    },
+    {
+      "hash": "sha256-8xuwMZvX35mgrZuRvzPVwEe7B57Pt3qSttAIM0NJbw0=",
+      "url": "Images/tshirts/s4.png"
+    },
+    {
+      "hash": "sha256-xka6iFKK2yDcm/R3zL/6+jJkgbwBZFsjiMk+wSM3ViE=",
+      "url": "Images/tshirts/s6.png"
+    },
+    {
+      "hash": "sha256-FvaiM46ZPPLmmC1vlDmylO1Zl1vgCaamCCCh8lYSr5E=",
+      "url": "Images/tshirts/s7.png"
+    },
+    {
+      "hash": "sha256-gxna/wNcKgLR9WQWDVqQgLN/yyETWAzUpc0eU97XgFY=",
+      "url": "Images/tshirts/s8.png"
+    },
+    {
+      "hash": "sha256-03FEdpXIP3RQwNetHh26U1vSp2V793+r+C3t+oehYio=",
+      "url": "Images/tshirts/s9.png"
     },
     {
       "hash": "sha256-LJNibcVcVVlJ9a+fWkiDzjQFSFeKhu/5sPBzA34ibSo=",
@@ -566,11 +666,11 @@ self.assetsManifest = {
       "url": "_content/NimbleBlazor/NimbleBlazor.lib.module.js"
     },
     {
-      "hash": "sha256-g5xWdkje8Qgg8jhYBb5U0TSzWaVLn6uvNwXybfTnNro=",
+      "hash": "sha256-o24jGROD16gTVawQ0yoo70qgiEF1IPXwguGU99K+Yz0=",
       "url": "_content/NimbleBlazor/nimble-components/all-components-bundle.min.js"
     },
     {
-      "hash": "sha256-ypAmCEkAhAk5fHFmH6rPnFF00RxRSV8JJsgh6FQpM4U=",
+      "hash": "sha256-RAdKv7a0HnO01sLOMuABimxvJlDVcvdrGQEx0bGN6zo=",
       "url": "_content/NimbleBlazor/nimble-components/all-components-bundle.min.js.map"
     },
     {
@@ -774,8 +874,8 @@ self.assetsManifest = {
       "url": "_framework/Microsoft.JSInterop.sx8ytaya28.wasm"
     },
     {
-      "hash": "sha256-JyvXKXHGGFht/hgMeeyNQTQJInAUyeWK3L+cgk2hvAk=",
-      "url": "_framework/NimbleBlazor.r7pybnt8hq.wasm"
+      "hash": "sha256-HNgznKSYEiKTMQ90YjUP0kLomy/bK2CGWxo0BK/gIn4=",
+      "url": "_framework/NimbleBlazor.44pjmbs2by.wasm"
     },
     {
       "hash": "sha256-PFSOVkLH+3EIj19ncsaJhrVRi2hJ9PkUgaovh3/XoKU=",
@@ -894,8 +994,8 @@ self.assetsManifest = {
       "url": "_framework/System.ObjectModel.tnx6afobzf.wasm"
     },
     {
-      "hash": "sha256-RxZCknuUbS/Tyh3weR+v1XC7RDt5Tij4v17ZXFtmz5U=",
-      "url": "_framework/System.Private.CoreLib.9skm31dmps.wasm"
+      "hash": "sha256-OgMklyInWC/Clkp2VWcm3ZzM4ls1hJj05RJc8D0ExSU=",
+      "url": "_framework/System.Private.CoreLib.eah9hj60l2.wasm"
     },
     {
       "hash": "sha256-JAii2zETnjv3zkVoF1pVPKCU4vD1c8lXJQaFuOabNsc=",
@@ -1030,7 +1130,7 @@ self.assetsManifest = {
       "url": "_framework/TypeSupport.fbn8fbh4gh.wasm"
     },
     {
-      "hash": "sha256-IW5nS2xO7YW2ZcTyM1Db4BJpQUTX59iaXwvXw7ODEhk=",
+      "hash": "sha256-Et3WiZZzrewCHsQqi/l1Zh1/qt+07nxwpp9eXKHd+Pw=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -1038,8 +1138,8 @@ self.assetsManifest = {
       "url": "_framework/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-ny4mEhReaDbg+NOA8Zt3LlV65QxNaOvR4ZlMlPKH/Po=",
-      "url": "_framework/capitalprint.xkrbh0gb86.wasm"
+      "hash": "sha256-pWk1VmHaOe8O3U+yrqTdZr7Ewb63CCaRjRT/wcEtqyc=",
+      "url": "_framework/capitalprint.hptp7wqu49.wasm"
     },
     {
       "hash": "sha256-0lmjQm4alVRkMelIm/ktDTJ0AFdwMBn4j1swgpizwIs=",
@@ -1062,8 +1162,8 @@ self.assetsManifest = {
       "url": "_framework/dotnet.js"
     },
     {
-      "hash": "sha256-I8N1UPyk3t3y802a+dntgpHX7vGvUyFSKIrNBxYmbVM=",
-      "url": "_framework/dotnet.native.9990ql443q.wasm"
+      "hash": "sha256-OtZenAoaPHbu/uKfzLbtxLlTNCwdcMGlDgcU9DMaIEo=",
+      "url": "_framework/dotnet.native.2xmjn6u80s.wasm"
     },
     {
       "hash": "sha256-jcb4zXQ2yAL34fTB3BBj6RktFZ4yahXNLZMg2F/REME=",
@@ -1178,7 +1278,7 @@ self.assetsManifest = {
       "url": "_framework/zh-Hant/Microsoft.CodeAnalysis.resources.re0kpzk59g.wasm"
     },
     {
-      "hash": "sha256-LbCoTWNY3K5myWWciS1wwCcKIWuSKSLutVLVH7NatX8=",
+      "hash": "sha256-Kzr+ENZdWmWtby3zBK5w9tggMEqY8k0FF2wmDu2hBmE=",
       "url": "css/MainLayout.css"
     },
     {
@@ -1322,7 +1422,7 @@ self.assetsManifest = {
       "url": "css/design.css"
     },
     {
-      "hash": "sha256-TwAZeIFHWZh8PFvVmzFNHaReSWMmYreekbAaQ7ecZ+4=",
+      "hash": "sha256-TsIoIxy+rR15nb0Dv9tq8P8HSa5c0DHrpM+UTbd0JXU=",
       "url": "css/home.css"
     },
     {
@@ -1342,7 +1442,7 @@ self.assetsManifest = {
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-zmqmuhHYeCEwKF1ZkjdtK3OGHtJJI78Ge2uFg7Z4QxI=",
+      "hash": "sha256-B1469cOjWXqs495dLC8zdinri3qveqFbDLA/yhkXfdM=",
       "url": "index.html"
     },
     {

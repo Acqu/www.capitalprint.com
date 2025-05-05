@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="theme-color" content="#722f37" />
     <meta name="description" content="We Customize The Looks You Wear, While You Wear The Look You Wish! Discover unparalleled craftsmanship with our premium custom clothing and personalized fashion services. From bespoke tailoring to innovative designs, we create outfits that perfectly reflect your unique style and personality. Explore a world of fashion tailored just for you, where every detail is designed to turn heads and make lasting impressions. Experience the artistry of custom wear today!">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
     <title>capitalprint</title>
     <!--<base href="/" />-->
     <link rel="icon" href="./favicon.ico">
@@ -24,17 +24,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8XKMWP5S7L"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-8XKMWP5S7L');
-    </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6180157732495792"
-     crossorigin="anonymous"></script>
     <style>
         .spinner {
             position: fixed;
@@ -121,7 +110,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix"></script>
-    <script src="https://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -135,6 +123,12 @@
             });
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-toggle').on('click', function () {
+                $(this).next('.dropdown-submenu').toggle();
+            });
+        });</script>
     <script>
         window.startChangingText = function (elementId, defaultText) {
             const element = document.getElementById(elementId);
@@ -289,6 +283,7 @@
         }
         // Capture modal and send order
         async function captureModalAndSend() {
+            alert("Placing your order, please wait...");
             const size = document.getElementById('sizeSelect')?.value || "Not Specified";
             const itemCount = document.getElementById('itemCount')?.value;
 
@@ -348,10 +343,16 @@
                 }
 
                 const imageUrl = result.data.url;
+                const size = document.getElementById('sizeSelect')?.value || "Not Specified";
+                const itemCount = parseInt(document.getElementById('itemCount')?.value) || 1;
+                // Assume you have the product price stored in a data attribute of the modal or passed from Blazor.
+                // For example, you can add an attribute to the modal container like data-price="@currentProduct.Price"
+                const price = parseFloat(document.getElementById('productModal').getAttribute('data-price')) || 0;
+                const totalPrice = (price * itemCount).toFixed(2);
                 const productName = document.querySelector('#productModal .modal-title')?.innerText || 'CapitalPrint Products';
 
-                // Generate WhatsApp order message
-                const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${selectedSize}\nQuantity: ${itemCount}\nPrice: GHS ${price}\nDesign Image: ${imageUrl}`;
+                // Generate WhatsApp order message using the corrected variables:
+                const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${size}\nQuantity: ${itemCount}\nTotal Price: GHS ${totalPrice}\nDesign Image: ${imageUrl}`;
                 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
 
                 console.log("Placing Your Order, Please Wait \nNavigating to WhatsApp...");
@@ -1042,8 +1043,7 @@
                 });
             }
         };
-
-        // Capture and send image via WhatsApp (existing function)
+        // Capture and send image via WhatsApp (updated function)
         window.captureAndSendImage = async (canvasId, productName, selectedColor, price, itemCount, selectedSize) => {
             const canvasElem = document.getElementById(canvasId);
             const dataURL = canvasElem.toDataURL("image/png");
@@ -1067,12 +1067,14 @@
                 console.error("Image upload failed", result);
             }
 
+            // Multiply the unit price by the quantity
+            const totalPrice = (parseFloat(price) * parseInt(itemCount)).toFixed(2);
+
             const WHATSAPP_NUMBER = '+233244736472';
-            const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${selectedSize}\nQuantity: ${itemCount}\nPrice: GHS ${price}\nDesign Image: ${imageUrl}`;
+            const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${selectedSize}\nQuantity: ${itemCount}\nTotal Price: GHS ${totalPrice}\nDesign Image: ${imageUrl}`;
             const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
         };
-
         window.captureAndUploadImage = async (canvasId) => {
             const canvasElem = document.getElementById(canvasId);
             const dataURL = canvasElem.toDataURL("image/png");
@@ -1176,9 +1178,21 @@
                 console.log(`Found ${products.length} product items.`);
 
                 products.forEach((product) => {
-                    // Get the product name element and the new-tag element
+                    // Get the product name element
                     const productNameElement = product.querySelector(".description-heading");
-                    const newTagElement = product.querySelector(".new-tag");
+                    // Try to get the new-tag element; if not found, create one.
+                    let newTagElement = product.querySelector(".new-tag");
+                    if (!newTagElement) {
+                        newTagElement = document.createElement("span");
+                        newTagElement.className = "new-tag";
+                        // Optionally, style the new tag via inline style or CSS class.
+                        newTagElement.style.backgroundColor = "red";
+                        newTagElement.style.color = "white";
+                        newTagElement.style.padding = "2px 5px";
+                        newTagElement.style.marginLeft = "5px";
+                        newTagElement.innerText = "New";
+                        product.appendChild(newTagElement);
+                    }
 
                     if (productNameElement && newTagElement) {
                         // Read the product name, trim spaces, and use lower-case for comparison
@@ -1190,6 +1204,7 @@
                             newTagElement.style.display = "inline-block";
                             console.log(`Displayed "New" tag for: "${productName}"`);
                         } else {
+                            newTagElement.style.display = "none";
                             console.log(`No "new" text in: "${productName}"`);
                         }
                     } else {
@@ -1239,22 +1254,26 @@
         $(document).ready(function () {
             $('.subcategory-img').each(function () {
                 var $img = $(this);
-                var images = $img.data('products').split(',').map(function (url) {
-                    return url.trim();
-                });
-                console.log('Images for this card:', images);
+                var images = $img.data('products').split(',').map(function (url) { return url.trim(); });
+                var names = $img.data('names').split(',').map(function (txt) { return txt.trim(); });
+                var descriptions = $img.data('descriptions').split(',').map(function (txt) { return txt.trim(); });
+                var prices = $img.data('prices').split(',').map(function (price) { return price.trim(); });
                 var index = 0;
+                var $details = $img.closest('.subcategory-item').find('.product-details');
+
                 setInterval(function () {
-                    console.log('Changing image; current index:', index);
                     index = (index + 1) % images.length;
                     $img.fadeOut(300, function () {
                         $img.attr('src', images[index]).fadeIn(300);
+                        // Update the product details along with the image
+                        $details.find('.description-heading').text(names[index]);
+                        $details.find('.description').text(descriptions[index]);
+                        $details.find('.product-price').html('<strong>Price:</strong> GHS ' + prices[index]);
                     });
                 }, 3000);
             });
         });
     </script>
-
     <style>
         .fade {
             transition: opacity 1s ease-in-out;
@@ -1265,6 +1284,59 @@
             opacity: 0;
         }
     </style>
+    <script>
+        function generateThumbnails(srcUrl) {
+            var img = new Image();
+            img.crossOrigin = "Anonymous"; // Ensure cross-origin images load properly
+            img.onload = function () {
+                var thumbWidth = 150, thumbHeight = 150;
+
+                function createThumbnail(cropX, cropY, grayscale) {
+                    var canvas = document.createElement("canvas");
+                    var ctx = canvas.getContext("2d");
+                    canvas.width = thumbWidth;
+                    canvas.height = thumbHeight;
+
+                    ctx.drawImage(img, cropX, cropY, thumbWidth, thumbHeight, 0, 0, thumbWidth, thumbHeight);
+
+                    if (grayscale) {
+                        var imageData = ctx.getImageData(0, 0, thumbWidth, thumbHeight);
+                        var data = imageData.data;
+                        for (var i = 0; i < data.length; i += 4) {
+                            var gray = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+                            data[i] = data[i + 1] = data[i + 2] = gray;
+                        }
+                        ctx.putImageData(imageData, 0, 0);
+                    }
+
+                    return canvas.toDataURL("image/jpeg");
+                }
+
+                // Generate thumbnails and set them to the respective <img> elements
+                document.getElementById("thumb1").src = createThumbnail(0, 0, false);
+                document.getElementById("thumb2").src = createThumbnail(
+                    Math.max((img.width - thumbWidth) / 2, 0),
+                    Math.max((img.height - thumbHeight) / 2, 0),
+                    false
+                );
+                document.getElementById("thumb3").src = createThumbnail(0, 0, true);
+            };
+
+            img.onerror = function (e) {
+                console.error("Error loading image for thumbnails: " + srcUrl, e);
+            };
+
+            img.src = srcUrl;
+        }
+
+        // Ensure the function is called after the DOM is ready
+        (function () {
+            var srcUrl = "@thumbSrc";
+            setTimeout(function () {
+                generateThumbnails(srcUrl);
+            }, 500);
+        })();
+    </script>
 </body>
 
 </html >

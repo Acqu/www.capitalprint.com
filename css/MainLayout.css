@@ -207,7 +207,32 @@ header {
     display: block;
     opacity: 1;
 }
+.dropdown-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
 
+    .dropdown-submenu li {
+        margin-bottom: 10px;
+    }
+
+    .dropdown-submenu a {
+        color: #337ab7;
+        text-decoration: none;
+    }
+
+        .dropdown-submenu a:hover {
+            color: #23527c;
+        }
+
+.dropdown-item:hover .dropdown-submenu {
+    display: block;
+}
 /* Footer */
 .footer {
     width: 100%;
@@ -282,3 +307,4 @@ header {
         font-size: 14px;
     }
 }
+
