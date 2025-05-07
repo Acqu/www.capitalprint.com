@@ -35,25 +35,21 @@
             box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
         }
 
-/* Products Container */
+/* Ensure the main container aligns the sidebar and product grid on the same row */
 .products-container {
     display: flex;
+    align-items: flex-start; /* Top-align both sidebar and grid */
     gap: 15px;
     padding: 15px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* Sidebar always visible on desktop */
-.sidebar {
-    min-width: 200px;
-    max-width: 250px;
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-right: 1px solid #dee2e6;
-    /* On larger screens, always show the sidebar */
-    display: block;
+/* Sidebar: for larger screens, force static positioning & fixed width */
+@media (min-width: 769px) {
+    .sidebar {
+        position: static;
+        transform: none;
+        width: 250px; /* Use the max-width defined */
+    }
 }
 
 /* Mobile adjustments: make sidebar fixed and off-canvas */
@@ -75,7 +71,7 @@
 
     /* Optional: hide sidebar toggle button on desktop screens */
     .d-md-none {
-        display: block;
+        display: flex;
     }
 }
 .collapsed-toggle {
@@ -96,19 +92,19 @@
         display: block;
     }
 
-/* Product Grid */
+/* Product Grid: use grid layout and force content to start at the top */
 .product-grid {
     flex-grow: 1;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Dynamic columns based on screen size */
-    gap: 25px; /* Increased space between items */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
     width: 100%;
     padding: 15px;
     background-color: #fff;
     border-radius: 8px;
     box-sizing: border-box;
+    align-content: start; /* Ensures grid rows start at the top */
 }
-
     /* Product Item */
     .product-item {
         background-color: white; /* Uniform white background */
@@ -149,7 +145,7 @@
     .product-info {
         text-align: center;
         padding: 10px;
-        background-color: #f9f9f9;
+        background-color: white;
         border-top: 1px solid #eee;
         border-radius: 5px;
     }

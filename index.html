@@ -110,6 +110,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix"></script>
+    <!--<iframe src="https://pixlr.com/editor/" width="800" height="600"></iframe>-->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -499,74 +500,137 @@
                 alert("Please select a shape to change its color.");
             }
         };
-        //helper function to convert the response data URL to a Blob
-        function dataURLToBlob(dataUrl) {
-            const arr = dataUrl.split(',');
-            const mime = arr[0].match(/:(.*?);/)[1];
-            const bstr = atob(arr[1]);
-            let n = bstr.length;
-            const u8arr = new Uint8Array(n);
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n);
-            }
-            return new Blob([u8arr], { type: mime });
+
+        // Naive raw background removal using a threshold (assumes a light/white background)
+        function removeBackgroundRaw(imageDataURL) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.crossOrigin = "Anonymous";
+                img.onload = function () {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, 0, 0);
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    const threshold = 240; // adjust this value for your specific background color
+                    for (let i = 0; i < data.length; i += 4) {
+                        // If R, G and B are near white, set alpha to 0 (transparent)
+                        if (data[i] >= threshold && data[i + 1] >= threshold && data[i + 2] >= threshold) {
+                            data[i + 3] = 0;
+                        }
+                    }
+                    ctx.putImageData(imageData, 0, 0);
+                    resolve(canvas.toDataURL("image/png"));
+                };
+                img.onerror = function (e) {
+                    reject(e);
+                };
+                img.src = imageDataURL;
+            });
         }
 
-        // Fix Remove Background by increasing threshold and ensuring proper update
+        // Spinner control functions (already available)
+        function showSpinner() {
+            const spinner = document.querySelector('.spinner');
+            if (spinner) {
+                spinner.style.display = 'flex';
+            }
+        }
+
+        function hideSpinner() {
+            const spinner = document.querySelector('.spinner');
+            if (spinner) {
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Updated fabricRemoveBackground to use the raw background removal
         window.fabricRemoveBackground = async () => {
             const activeObject = window.fabricCanvas.getActiveObject();
-            if (activeObject && activeObject.type === "image") {
-                const imageUrl = activeObject.getSrc(); // This is a data URL if uploaded via FileReader
-                const apiKey = "k3eCgBTVjLfBRy6dQUR44FMH"; // Replace with your valid remove.bg API key
-
-                try {
-                    // Convert the data URL to a Blob
-                    const fileBlob = dataURLToBlob(imageUrl);
-
-                    // Construct the FormData object properly using the file upload field name
-                    const formData = new FormData();
-                    formData.append("image_file", fileBlob, "image.png");
-                    formData.append("size", "auto"); // Optional: Adjust size if needed
-
-                    // Make the API request
-                    const response = await fetch("https://api.remove.bg/v1.0/removebg", {
-                        method: "POST",
-                        headers: {
-                            "X-Api-Key": apiKey
-                        },
-                        body: formData
-                    });
-
-                    if (!response.ok) {
-                        const errorText = await response.text();
-                        throw new Error(`Failed to remove background try Blending Feature: ${errorText}`);
-                    }
-
-                    const blob = await response.blob();
-                    const newImageUrl = URL.createObjectURL(blob);
-
-                    // Replace the current image with the background-removed version
-                    fabric.Image.fromURL(newImageUrl, (img) => {
-                        img.set({
-                            left: activeObject.left,
-                            top: activeObject.top,
-                            scaleX: activeObject.scaleX,
-                            scaleY: activeObject.scaleY
-                        });
-                        window.fabricCanvas.remove(activeObject);
-                        window.fabricCanvas.add(img);
-                        window.fabricCanvas.setActiveObject(img);
-                        window.fabricCanvas.renderAll();
-                        window.fabricSaveHistory();
-                    });
-                } catch (error) {
-                    console.error("Error removing background:", error);
-                    alert("Failed to remove background. Please check your API key and image file.");
-                }
-            } else {
+            if (!activeObject || activeObject.type !== "image") {
                 alert("Please select an image to remove its background.");
+                return;
+            }
+
+            // Get the image source from Fabric (assumed to be a data URL).
+            const imageUrl = activeObject.getSrc();
+
+            try {
+                showSpinner(); // Show spinner before starting
+
+                // Use our raw method to remove the background
+                const newImageDataURL = await removeBackgroundRaw(imageUrl);
+
+                // Update the Fabric canvas with the background-removed image.
+                fabric.Image.fromURL(newImageDataURL, (img) => {
+                    img.set({
+                        left: activeObject.left,
+                        top: activeObject.top,
+                        scaleX: activeObject.scaleX,
+                        scaleY: activeObject.scaleY
+                    });
+                    window.fabricCanvas.remove(activeObject);
+                    window.fabricCanvas.add(img);
+                    window.fabricCanvas.setActiveObject(img);
+                    window.fabricCanvas.renderAll();
+                    window.fabricSaveHistory();
+                });
+            } catch (error) {
+                console.error("Error removing background:", error);
+                alert("Failed to remove background. Please check the console for details.");
+            } finally {
+                hideSpinner(); // Hide spinner after done
             }
         };
+
+        // Update thumbnail generation to disable image smoothing for sharper thumbnails
+        function generateThumbnails(srcUrl) {
+            var img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = function () {
+                var thumbDim = 150;
+
+                // Create and configure canvas for first thumbnail
+                var canvas1 = document.createElement("canvas");
+                canvas1.width = thumbDim;
+                canvas1.height = thumbDim;
+                var ctx1 = canvas1.getContext("2d");
+                ctx1.imageSmoothingEnabled = false;
+                // Horizontal crop: take the top 1/3 of the image
+                ctx1.drawImage(img, 0, 0, img.width, img.height / 3, 0, 0, thumbDim, thumbDim);
+                var thumb1 = canvas1.toDataURL("image/jpeg");
+
+                // Create and configure canvas for second thumbnail
+                var canvas2 = document.createElement("canvas");
+                canvas2.width = thumbDim;
+                canvas2.height = thumbDim;
+                var ctx2 = canvas2.getContext("2d");
+                ctx2.imageSmoothingEnabled = false;
+                // Vertical crop: take the right 1/3 of the image
+                ctx2.drawImage(img, img.width - img.width / 3, 0, img.width / 3, img.height, 0, 0, thumbDim, thumbDim);
+                var thumb2 = canvas2.toDataURL("image/jpeg");
+
+                // Create and configure canvas for third thumbnail (scaled original)
+                var canvas3 = document.createElement("canvas");
+                canvas3.width = thumbDim;
+                canvas3.height = thumbDim;
+                var ctx3 = canvas3.getContext("2d");
+                ctx3.imageSmoothingEnabled = false;
+                ctx3.drawImage(img, 0, 0, img.width, img.height, 0, 0, thumbDim, thumbDim);
+                var thumb3 = canvas3.toDataURL("image/jpeg");
+
+                document.getElementById("thumb1").src = thumb1;
+                document.getElementById("thumb2").src = thumb2;
+                document.getElementById("thumb3").src = thumb3;
+            };
+            img.onerror = function (e) {
+                console.error("Error loading image for thumbnails: " + srcUrl, e);
+            };
+            img.src = srcUrl;
+        }
+
         // New CamanJS integration: Apply a vintage filter using CamanJS.
         window.camanApplyVintage = () => {
             const canvasElem = document.getElementById("fabricCanvas");
@@ -1285,57 +1349,73 @@
         }
     </style>
     <script>
+        // Function to generate three thumbnails:
+        // 1. Horizontal crop from the top (neck part)
+        // 2. Vertical crop from the right (side)
+        // 3. The original image scaled down
         function generateThumbnails(srcUrl) {
             var img = new Image();
-            img.crossOrigin = "Anonymous"; // Ensure cross-origin images load properly
+            img.crossOrigin = "Anonymous";
             img.onload = function () {
-                var thumbWidth = 150, thumbHeight = 150;
+                var thumbDim = 150;
 
-                function createThumbnail(cropX, cropY, grayscale) {
-                    var canvas = document.createElement("canvas");
-                    var ctx = canvas.getContext("2d");
-                    canvas.width = thumbWidth;
-                    canvas.height = thumbHeight;
+                // Horizontal crop: take the top 1/3 of the image
+                var hCropWidth = img.width,
+                    hCropHeight = img.height / 3;
+                var canvas1 = document.createElement("canvas");
+                canvas1.width = thumbDim;
+                canvas1.height = thumbDim;
+                var ctx1 = canvas1.getContext("2d");
+                ctx1.drawImage(img, 0, 0, hCropWidth, hCropHeight, 0, 0, thumbDim, thumbDim);
+                var thumb1 = canvas1.toDataURL("image/jpeg");
 
-                    ctx.drawImage(img, cropX, cropY, thumbWidth, thumbHeight, 0, 0, thumbWidth, thumbHeight);
+                // Vertical crop: take the right 1/3 of the image
+                var vCropWidth = img.width / 3,
+                    vCropHeight = img.height;
+                var canvas2 = document.createElement("canvas");
+                canvas2.width = thumbDim;
+                canvas2.height = thumbDim;
+                var ctx2 = canvas2.getContext("2d");
+                ctx2.drawImage(img, img.width - vCropWidth, 0, vCropWidth, vCropHeight, 0, 0, thumbDim, thumbDim);
+                var thumb2 = canvas2.toDataURL("image/jpeg");
 
-                    if (grayscale) {
-                        var imageData = ctx.getImageData(0, 0, thumbWidth, thumbHeight);
-                        var data = imageData.data;
-                        for (var i = 0; i < data.length; i += 4) {
-                            var gray = data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
-                            data[i] = data[i + 1] = data[i + 2] = gray;
-                        }
-                        ctx.putImageData(imageData, 0, 0);
-                    }
+                // Third thumbnail: the original image scaled down
+                var canvas3 = document.createElement("canvas");
+                canvas3.width = thumbDim;
+                canvas3.height = thumbDim;
+                var ctx3 = canvas3.getContext("2d");
+                ctx3.drawImage(img, 0, 0, img.width, img.height, 0, 0, thumbDim, thumbDim);
+                var thumb3 = canvas3.toDataURL("image/jpeg");
 
-                    return canvas.toDataURL("image/jpeg");
-                }
-
-                // Generate thumbnails and set them to the respective <img> elements
-                document.getElementById("thumb1").src = createThumbnail(0, 0, false);
-                document.getElementById("thumb2").src = createThumbnail(
-                    Math.max((img.width - thumbWidth) / 2, 0),
-                    Math.max((img.height - thumbHeight) / 2, 0),
-                    false
-                );
-                document.getElementById("thumb3").src = createThumbnail(0, 0, true);
+                document.getElementById("thumb1").src = thumb1;
+                document.getElementById("thumb2").src = thumb2;
+                document.getElementById("thumb3").src = thumb3;
             };
-
             img.onerror = function (e) {
                 console.error("Error loading image for thumbnails: " + srcUrl, e);
             };
-
             img.src = srcUrl;
         }
 
-        // Ensure the function is called after the DOM is ready
-        (function () {
-            var srcUrl = "@thumbSrc";
+        // When a thumbnail is clicked, update the main modal image
+        function onThumbnailClick(element) {
+            const mainImage = document.getElementById("mainModalImage");
+            if (mainImage) {
+                mainImage.src = element.src; // Replace the main image with the thumbnail's source
+                mainImage.style.width = "100%"; // Ensure it matches the original size
+                mainImage.style.height = "auto"; // Maintain aspect ratio
+            }
+        }
+
+        // Optionally, if you want to generate the thumbnails automatically on page load:
+        document.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
-                generateThumbnails(srcUrl);
+                if (typeof thumbSrcFromServer !== "undefined") {
+                    generateThumbnails(thumbSrcFromServer);
+                }
             }, 500);
-        })();
+        });
+
     </script>
 </body>
 

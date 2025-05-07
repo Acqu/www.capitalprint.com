@@ -231,10 +231,13 @@ body {
     text-align: center;
 }
 
-/* Style for the main modal image */
+/* Main modal image styling */
 .main-modal-image {
-    max-width: 100%;
-    height: auto;
+    width: 100%; /* Ensure it takes the full width of the container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevent skewing */
+    max-height: 500px; /* Limit the height to avoid overflow */
+    margin: 0 auto; /* Center the image */
 }
 
 /* Navigation buttons overlayed on the main image */
@@ -263,13 +266,19 @@ body {
 
 /* Thumbnail images styling */
 .thumbnail-modal-image {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
+    width: 100px; /* Set a consistent width */
+    height: 100px; /* Set a consistent height */
+    object-fit: cover; /* Ensure the image maintains its aspect ratio */
     margin: 0 5px;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     cursor: pointer;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
+
+    .thumbnail-modal-image:hover {
+        transform: scale(1.1); /* Slight zoom effect on hover */
+        border-color: orange; /* Highlight border on hover */
+    }
 
 /* Place Order Button */
 .place-order-btn {
