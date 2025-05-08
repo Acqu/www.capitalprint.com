@@ -12,15 +12,38 @@ body {
     object-fit: cover;
     border-radius: 5px;
 }
+/*added you can remove*/
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+    max-height: 600px; /* Adjust max-height as needed */
+    object-fit: cover;
+}
+
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+}
 
 .carousel-item {
     transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
 }
 
-    .carousel-item.active {
-        opacity: 1;
-        transform: scale(1.05);
+@media (min-width: 1024px) {
+    .carousel-inner img {
+        height: 85vh; /* Increased from 75vh */
     }
+}
+
+.carousel-item.active {
+    opacity: 1;
+    transform: scale(1.05);
+}
 
 .carousel {
     border-top: 3px solid #ddd;
@@ -58,7 +81,6 @@ body {
     background-color: #ffffff; /* Ensure the product grid container also has a white background */
 }
 
-
 @media (max-width: 768px) {
     .product-grid-container {
         display: flex;
@@ -84,7 +106,6 @@ body {
         }
         /* Ensure text inside product grid wraps properly */
         .product-grid-container h5,
-        /* Ensure description text in the product grid container wraps */
         .product-grid-container p,
         .product-grid-container .description {
             word-wrap: break-word;
@@ -108,7 +129,7 @@ body {
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
     }
 /* Updated subcategory image styling:
-   Removed CSS transition to avoid conflict with jQuery fade effects */
+      Removed CSS transition to avoid conflict with jQuery fade effects */
 .subcategory-img {
     width: 100%;
     height: auto;
@@ -275,6 +296,7 @@ body {
     transition: transform 0.3s ease, border-color 0.3s ease;
     background-color: #fff;
 }
+
     .thumbnail-modal-image:hover {
         transform: scale(1.1); /* Slight zoom effect on hover */
         border-color: orange; /* Highlight border on hover */
@@ -435,12 +457,11 @@ body {
     }
 }
 
-    .carousel-item figcaption {
-        margin-top: 8px;
-        font-size: 14px;
-        color: #555; /* Subtle text color */
-    }
-
+.carousel-item figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555; /* Subtle text color */
+}
 
 @media (max-width: 768px) {
     .subcategory-img {
@@ -516,7 +537,7 @@ body {
     .subcategory-item:hover {
         transform: scale(1.05);
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }   
+    }
 
 /* Keep existing subcategory image rules */
 .subcategory-img {
@@ -526,7 +547,6 @@ body {
     object-fit: contain;
     border-radius: 5px;
 }
-
 
 .contact-info,
 .chat-info {
@@ -592,6 +612,7 @@ body {
         opacity: 0.7;
     }
 }
+
 footer {
     background-color: #f7f7f2;
     padding: 20px;
@@ -716,9 +737,3 @@ footer {
 .thumbnail-modal-image.sepia-thumbnail {
     filter: sepia(100%);
 }
-
-
-
-
-   
-
