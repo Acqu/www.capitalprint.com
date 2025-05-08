@@ -146,12 +146,15 @@
     flex-wrap: wrap; /* Ensure buttons wrap to the next row if needed */
     justify-content:normal; /* Distribute buttons evenly */
 }
+/* Reduce gap between advanced tools buttons to 1px */
+.row.button-group {
+    gap: 1px;
+}
 
-    .button-group .col-3 {
-        padding: 2px; /* Add consistent padding between buttons */
-        flex: 0 0 25%; /* Ensure each button takes up 25% of the row */
-        max-width: 25%; /* Ensure proper alignment */
-    }
+.button-group .col-3 {
+    padding: 1px;
+    margin: 0;
+}
 
 
 
