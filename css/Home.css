@@ -93,7 +93,7 @@ body {
     }
 
         .product-grid-container::-webkit-scrollbar {
-            height: 8px;
+            height: 5px;
         }
 
         .product-grid-container::-webkit-scrollbar-thumb {
@@ -133,7 +133,7 @@ body {
 .subcategory-img {
     width: 100%;
     height: auto;
-    max-height: 150px;
+    max-height: 200px;
     object-fit: contain;
     border-radius: 5px;
     opacity: 1;
