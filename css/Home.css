@@ -266,15 +266,15 @@ body {
 
 /* Thumbnail images styling */
 .thumbnail-modal-image {
-    width: 100px; /* Set a consistent width */
-    height: 100px; /* Set a consistent height */
-    object-fit: cover; /* Ensure the image maintains its aspect ratio */
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
     margin: 0 5px;
     border: 2px solid #ddd;
     cursor: pointer;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    background-color: #fff;
 }
-
     .thumbnail-modal-image:hover {
         transform: scale(1.1); /* Slight zoom effect on hover */
         border-color: orange; /* Highlight border on hover */
