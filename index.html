@@ -314,7 +314,7 @@
                 const totalPrice = (price * parsedItemCount).toFixed(2);
                 const productName = document.querySelector('#productModal .modal-title')?.innerText || 'CapitalPrint Products';
 
-                // Loop through each brand order row
+                // Loop through each brand order row.
                 const brandRows = document.querySelectorAll("#orderBrandTable tbody tr");
                 let brandDetails = "";
                 brandRows.forEach(function (row, index) {
@@ -337,6 +337,7 @@
                 alert("An error occurred while processing your request. Please try again.");
             }
         }
+
     </script>
     <script>
         // History management for undo/redo
