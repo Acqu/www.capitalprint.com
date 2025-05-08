@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "83/r5YfO",
+  "version": "XEwBfdCC",
   "assets": [
     {
       "hash": "sha256-GkRygJeYbqIcvTK6qUO6QfY5jSC8ko0c1ERUevhc5q8=",
@@ -32,6 +32,18 @@ self.assetsManifest = {
     {
       "hash": "sha256-1r2CwVEYjsOWPkQXTUfwoqLj5adRtb0YSMSN9o4mRno=",
       "url": "Images/Drinkingwear/mug9.jpg"
+    },
+    {
+      "hash": "sha256-NF71gldOGSVQqitF/mnFsvVyHHPShkQ2aR4Jz6E9UgE=",
+      "url": "Images/Drinkingwear/uvdtf1.jpg"
+    },
+    {
+      "hash": "sha256-tWPsYrTAjUKjxeqIiHrDnIY6ShLh9WQJ5V43/cFMrss=",
+      "url": "Images/Drinkingwear/uvdtf2.jpg"
+    },
+    {
+      "hash": "sha256-4RYnX2/7Dtg0wIMOSROQUHzLOZA6HkHu3/5asJZsZxg=",
+      "url": "Images/Drinkingwear/uvdtf3.jpg"
     },
     {
       "hash": "sha256-TBKaZE5eO8SFEZ+vXvJKEmAiU4zJI5f+k9PRV0JueKo=",
@@ -138,10 +150,6 @@ self.assetsManifest = {
       "url": "Images/cloths/Cloth2.jpg"
     },
     {
-      "hash": "sha256-/S38V/ICojecCPulv07gheYbitEfgX4Tvb3uHYi3qY0=",
-      "url": "Images/cloths/Cloth3.jpg"
-    },
-    {
       "hash": "sha256-fNNRivD9vv9sHlLjnuPaE1WpSqOJdmoBUekBDTPXsys=",
       "url": "Images/cloths/Cloth4.png"
     },
@@ -166,8 +174,40 @@ self.assetsManifest = {
       "url": "Images/cloths/Cloth9.jpg"
     },
     {
+      "hash": "sha256-PHLhoHaLd4r2T2hHacaEZrbrG2rbVqZ3oiudtvmTzHM=",
+      "url": "Images/cloths/appron1.jpg"
+    },
+    {
+      "hash": "sha256-VHcodQRTSeHWZ8Sjou0hXUDxnqrSk8xyy+yDhyn2+b0=",
+      "url": "Images/cloths/appron2.jpg"
+    },
+    {
+      "hash": "sha256-EnBssCrukDzneAwxDXkuNZD0VJPnnVSpa3U3cCcTCFY=",
+      "url": "Images/cloths/appron3.jpg"
+    },
+    {
+      "hash": "sha256-xT70a2aKdDUn1E9HVtFND3wxAFvwCbMuzVEW0WESmQs=",
+      "url": "Images/cloths/appron4.jpg"
+    },
+    {
       "hash": "sha256-q7XcEa0DDBL9eJ3T8j8Caw7OTnYQxz0QRc5NIZUNO+c=",
       "url": "Images/cloths/cloth1.jpg"
+    },
+    {
+      "hash": "sha256-Hm+yp8JGcJ6wrTX8g7U9gZsUlk92d+hsS4e7UqTxQl0=",
+      "url": "Images/cloths/cloth3.jpg"
+    },
+    {
+      "hash": "sha256-TwjPbABQOBgGGDGfQDw2eSfmqqBixTVzikBhy5uxviY=",
+      "url": "Images/cloths/cloths.png"
+    },
+    {
+      "hash": "sha256-WdZYfKQ3xYqnP8MBxw4Sh8BtSWB9tbHz5hTYSheSVCU=",
+      "url": "Images/cloths/mfabrics.jpg"
+    },
+    {
+      "hash": "sha256-M7bxhwYh5z0Z6CVMgxTVUGqiTTN8GHvq6XoeYEfa0XQ=",
+      "url": "Images/cloths/tsfabrics.jpg"
     },
     {
       "hash": "sha256-WmRA2wDX6HN9ztnpYSNrfUughUaFhQmdJLRaUxJl1us=",
@@ -196,14 +236,6 @@ self.assetsManifest = {
     {
       "hash": "sha256-QOY4e4MeFEmT/mAv8DfggZG0bl3Dwitam0vbP0qVAIk=",
       "url": "Images/gifts/gbags1.png"
-    },
-    {
-      "hash": "sha256-w80S80H81XneDskAnwwz1CG2Ri4FH4Jfc9aMvsKCHGg=",
-      "url": "Images/giphy1.gif"
-    },
-    {
-      "hash": "sha256-xMvFpgFtR+zkwapzysolcRgRLXoHuCBVyzy5WQwqcnw=",
-      "url": "Images/giphy3.gif"
     },
     {
       "hash": "sha256-WmRA2wDX6HN9ztnpYSNrfUughUaFhQmdJLRaUxJl1us=",
@@ -1158,7 +1190,7 @@ self.assetsManifest = {
       "url": "_framework/TypeSupport.fbn8fbh4gh.wasm"
     },
     {
-      "hash": "sha256-uLQLm/hTYzCv9QFd8DPcJi/qHDgs0ISc5sfJ+SiZPrM=",
+      "hash": "sha256-4J7/yWMhkGtmgIzYNz0CPUg1tXNClCAxOe0niVAOEfI=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -1166,8 +1198,8 @@ self.assetsManifest = {
       "url": "_framework/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-pNWesBTdEd4FybDtVclF5nUJFBbxxwmCOit3B4ASnv8=",
-      "url": "_framework/capitalprint.w16wbl5tem.wasm"
+      "hash": "sha256-7G0CdgbfNVDVySOBpnOz6M/KyF/bYMkaH8z1iWnc5Yc=",
+      "url": "_framework/capitalprint.wl47zzxgax.wasm"
     },
     {
       "hash": "sha256-0lmjQm4alVRkMelIm/ktDTJ0AFdwMBn4j1swgpizwIs=",
@@ -1470,7 +1502,7 @@ self.assetsManifest = {
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-ISf5HUDudqq818jjHo2Pj1fAmjeV8iXK2iI7SHv3So4=",
+      "hash": "sha256-7ACHGS30eKcj+3jFkL3sthFdlCuAVZRI6320J7XtE+0=",
       "url": "index.html"
     },
     {
