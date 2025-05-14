@@ -131,6 +131,17 @@
         });
     </script>
     <script>
+        function startCarouselForProducts() {
+            // Your carousel initialization logic here.
+            console.log("startCarouselForProducts");
+        }
+    </script>
+    <script>
+        function hideLoadingSpinner() {
+            console.log("hideLoadingSpinner");
+        }
+    </script>
+    <script>
         window.startChangingText = function (elementId, defaultText) {
             const element = document.getElementById(elementId);
             if (!element) {
@@ -222,123 +233,159 @@
                 modalDescription.textContent = state.sliderProducts[state.currentIndex].Description;
             }
         }
+        //// Function to close modal and resume product grid carousel
+        //function closeModal(subCategoryName) {
+        //    selectedProduct = null;
 
-        // Function to close modal and resume product grid carousel
-        function closeModal(subCategoryName) {
-            selectedProduct = null;
+        //    // Resume subcategory carousel (NOT in modal)
+        //    if (!gridCarouselTimers[subCategoryName]) {
+        //        gridCarouselTimers[subCategoryName] = setInterval(() => {
+        //            let state = categorySliderStates[subCategoryName];
+        //            state.currentIndex = (state.currentIndex + 1) % state.sliderProducts.length;
 
-            // Resume subcategory carousel (NOT in modal)
-            if (!gridCarouselTimers[subCategoryName]) {
-                gridCarouselTimers[subCategoryName] = setInterval(() => {
-                    let state = categorySliderStates[subCategoryName];
-                    state.currentIndex = (state.currentIndex + 1) % state.sliderProducts.length;
-
-                    state.sliderProducts.forEach(product => {
-                        const productImage = document.querySelector(`#product-${product.Name} .product-img`);
-                        if (productImage) {
-                            productImage.src = state.sliderProducts[state.currentIndex].ImageUrl;
-                        }
-                    });
-                }, 3000); // Auto-slide every 3 seconds
-            }
-        }
+        //            state.sliderProducts.forEach(product => {
+        //                const productImage = document.querySelector(`#product-${product.Name} .product-img`);
+        //                if (productImage) {
+        //                    productImage.src = state.sliderProducts[state.currentIndex].ImageUrl;
+        //                }
+        //            });
+        //        }, 3000); // Auto-slide every 3 seconds
+        //    }
+        //}
         // Example: Call `initializeCarousels(categoryProducts)` when page loads
     </script>
     <script>
-        const WHATSAPP_NUMBER = '+233244736472';
+        // Wrap everything so that functions are registered after the DOM loads.
+        document.addEventListener("DOMContentLoaded", function () {
 
-        // Generic function to toggle popup visibility with smooth transitions
-        function togglePopup(popupId, show) {
-            const popup = document.getElementById(popupId);
-            if (popup) {
-                if (show) {
-                    popup.style.display = 'block';
-                    popup.style.opacity = '1';
-                    popup.style.transform = 'scale(1)';
-                } else {
-                    popup.style.opacity = '0';
-                    popup.style.transform = 'scale(0.9)';
-                    setTimeout(() => {
-                        popup.style.display = 'none';
-                    }, 300);
+            // WhatsApp number (without the plus sign) and Imgbb API key
+            const WHATSAPP_NUMBER = '233244736472';
+            const IMGBB_API_KEY = '7d66cb3efc20cc0bd383710c214e0999';
+
+            // Toggle popup visibility (keeps your design intact)
+            function togglePopup(popupId, show) {
+                const popup = document.getElementById(popupId);
+                if (!popup) {
+                    console.error(`Popup element '${popupId}' not found.`);
+                    return;
                 }
-                console.log(`${popupId} is now ${show ? 'visible' : 'hidden'}.`);
-            } else {
-                console.error(`Error: Popup element '${popupId}' not found!`);
-            }
-        }
-
-        // Welcome popup close functionality
-        function closeWelcomePopup() {
-            togglePopup('welcomePopup', false);
-            togglePopup('screenOverlay', false);
-        }
-
-        // Order popup open and close functionality
-        function openOrderPopup() {
-            togglePopup('orderPopup', true);
-        }
-
-        function closeOrderPopup() {
-            togglePopup('orderPopup', false);
-        }
-
-        // Function to finish the WhatsApp conversation once the user is done.
-        function finishWhatsAppConversation() {
-            window.location.href = '/';
-        }
-
-        // Capture modal and send order via WhatsApp
-        window.captureModalAndSend = async function () {
-            alert("Placing your order, please wait...");
-            const size = document.getElementById('sizeSelect')?.value || "Not Specified";
-            const itemCount = document.getElementById('itemCount')?.value;
-
-            // Validate inputs
-            if (!itemCount || itemCount < 1) {
-                alert("Please select a valid quantity!");
-                console.error("Validation failed: Quantity is required.");
-                return;
+                popup.style.display = show ? "block" : "none";
             }
 
-            // Attempt to get product details from productModal if it exists; otherwise use defaults.
-            const modalElement = document.getElementById('productModal');
-            let productName = 'CapitalPrint Products';
-            let price = 0;
-            if (modalElement) {
-                price = parseFloat(modalElement.getAttribute('data-price')) || 0;
-                productName = document.querySelector('#productModal .modal-title')?.innerText || 'CapitalPrint Products';
-            } else {
-                console.warn("productModal not found, using default product details.");
-            }
+            // Expose open/close functions to global scope
+            window.openOrderPopup = function () {
+                togglePopup('orderPopup', true);
+            };
+            window.closeOrderPopup = function () {
+                togglePopup('orderPopup', false);
+            };
 
-            try {
-                const parsedItemCount = parseInt(itemCount) || 1;
-                const totalPrice = (price * parsedItemCount).toFixed(2);
-
-                // Loop through each brand order row.
-                const brandRows = document.querySelectorAll("#orderBrandTable tbody tr");
-                let brandDetails = "";
-                brandRows.forEach(function (row, index) {
-                    const brand = row.querySelector(".brandSelect").value;
-                    const type = row.querySelector(".typeSelect").value;
-                    const sizeBrand = row.querySelector(".sizeSelectBrand").value;
-                    const qtyBrand = row.querySelector(".quantityInput").value;
-                    if (brand || type || sizeBrand || qtyBrand) {
-                        brandDetails += `\nOrder ${index + 1}:\n  Brand: ${brand || "Not Specified"}\n  Type: ${type || "Not Specified"}\n  Size: ${sizeBrand || "Not Specified"}\n  Quantity: ${qtyBrand}\n`;
-                    }
+            // Helper to convert a Blob to a DataURL (wrapped in a Promise)
+            function fileReaderToDataURL(blob) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
                 });
-
-                const whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${size}\nQuantity: ${parsedItemCount}\nTotal Price: GHS ${totalPrice}\n${brandDetails}`;
-                const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
-
-                console.log("Placing Your Order. Navigating to WhatsApp...");
-                window.open(whatsappUrl, '_blank');
-            } catch (error) {
-                console.error("Error processing the order:", error);
-                alert("An error occurred while processing your request. Please try again.");
             }
-        };
+
+            // This is our main function that is invoked when the user clicks "Submit Order".
+            window.captureModalAndSend = async function () {
+                try {
+                    // Get order details from the Order Popup
+                    const size = document.getElementById('sizeSelect')?.value || "Not Specified";
+                    const itemCount = document.getElementById('itemCount')?.value;
+                    if (!itemCount || parseInt(itemCount, 10) < 1) {
+                        alert("Please select a valid quantity!");
+                        return;
+                    }
+
+                    // Retrieve product details from the Product Modal
+                    const modalElement = document.getElementById('productModal');
+                    if (!modalElement) {
+                        console.error("Product modal not found!");
+                        return;
+                    }
+                    const productName = document.querySelector('#productModal .modal-title')?.innerText || "CapitalPrint Products";
+                    const productPrice = parseFloat(modalElement.getAttribute('data-price')) || 0;
+                    const totalPrice = (productPrice * parseInt(itemCount, 10)).toFixed(2);
+
+                    // Gather additional brand order details from the order table
+                    let brandDetails = [];
+                    document.querySelectorAll("#orderBrandTable tbody tr").forEach(row => {
+                        brandDetails.push({
+                            brand: row.querySelector(".brandSelect")?.value || "Not Specified",
+                            type: row.querySelector(".typeSelect")?.value || "Not Specified",
+                            size: row.querySelector(".sizeSelectBrand")?.value || "Not Specified",
+                            quantity: row.querySelector(".quantityInput")?.value || "1"
+                        });
+                    });
+
+                    // Capture the image from the Product Modal
+                    const modalImageElement = document.getElementById('mainModalImage');
+                    if (!modalImageElement) {
+                        console.error("Modal image element not found!");
+                        return;
+                    }
+                    const imageUrl = modalImageElement.src;
+                    // Fetch the image data
+                    const imageResponse = await fetch(imageUrl);
+                    const blob = await imageResponse.blob();
+                    const dataUrl = await fileReaderToDataURL(blob);
+                    const base64Data = dataUrl.split(',')[1];
+
+                    console.log("Uploading product image to Imgbb...");
+                    // Prepare the data for Imgbb upload
+                    const formData = new URLSearchParams();
+                    formData.append('image', base64Data);
+
+                    // POST to Imgbb
+                    const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const imgbbResult = await imgbbResponse.json();
+                    let uploadedImageUrl = "";
+                    if (imgbbResult.success) {
+                        uploadedImageUrl = imgbbResult.data.url;
+                        console.log("Image uploaded successfully:", uploadedImageUrl);
+                    } else {
+                        console.error("Image upload failed", imgbbResult);
+                    }
+
+                    // Compose the WhatsApp message (include order details and image URL)
+                    let whatsappMessage = `Hello! I would like to place an order.\n\nProduct: ${productName}\nSize: ${size}\nQuantity: ${itemCount}\nTotal Price: GHS ${totalPrice}\nDesign Image: ${uploadedImageUrl}`;
+                    brandDetails.forEach((b, idx) => {
+                        whatsappMessage += `\n\nOrder ${idx + 1}:\nBrand: ${b.brand}\nType: ${b.type}\nSize: ${b.size}\nQuantity: ${b.quantity}`;
+                    });
+                    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+                    // Determine the proper WhatsApp URL (using mobile protocol if needed)
+                    let whatsappUrl;
+                    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                        whatsappUrl = `whatsapp://send?phone=${WHATSAPP_NUMBER}&text=${encodedMessage}`;
+                    } else {
+                        whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+                    }
+
+                    console.log("Navigating to WhatsApp:", whatsappUrl);
+                    // Open WhatsApp in a new tab by simulating a click on an anchor element.
+                    const anchor = document.createElement("a");
+                    anchor.href = whatsappUrl;
+                    anchor.target = "_blank";
+                    anchor.rel = "noopener noreferrer";
+                    document.body.appendChild(anchor);
+                    anchor.click();
+                    document.body.removeChild(anchor);
+
+                } catch (error) {
+                    console.error("Error processing order:", error);
+                    alert("An error occurred while processing your order. Please try again.");
+                }
+            }; // end captureModalAndSend
+
+        }); // end DOMContentLoaded
     </script>
     <script>
         // History management for undo/redo
@@ -866,7 +913,7 @@
             window.fabricCanvas.isDrawingMode = true;
             window.fabricCanvas.freeDrawingBrush = new fabric.PencilBrush(window.fabricCanvas);
             window.fabricCanvas.freeDrawingBrush.color = prompt("Enter brush color:", "red") || "red";
-            window.fabricCanvas.freeDrawingBrush.width = parseInt(prompt("Enter brush width:", "5", "5.5", "10", "10.1"), 10) || 5;
+            window.fabricCanvas.freeDrawingBrush.width = parseInt(prompt("Enter brush width:", "5"), 10) || 5;
             alert("Drawing mode activated. To exit, disable drawing mode.");
         };
         // Disable custom brush mode
@@ -1252,11 +1299,6 @@
                 });
             }, 1000); // 1-second delay to ensure all elements are rendered
         });
-    </script>
-    <script>
-        function hideLoadingSpinner() {
-            // Code to hide the loading spinner goes here
-        }
     </script>
     <script>
         window.startCarousel = function () {

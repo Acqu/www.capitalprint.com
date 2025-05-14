@@ -4,8 +4,10 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff; /* Set the entire page background to white */
 }
-
-/* Carousel Styles */
+/*.carousel img {
+    max-width: 100%;
+    height: auto;*/
+}/* Carousel Styles */
 .carousel-item img {
     height: auto;
     width: 100%;

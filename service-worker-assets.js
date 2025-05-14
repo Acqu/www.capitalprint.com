@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "/giNlalw",
+  "version": "9wsLp4Lb",
   "assets": [
     {
       "hash": "sha256-GkRygJeYbqIcvTK6qUO6QfY5jSC8ko0c1ERUevhc5q8=",
@@ -80,10 +80,6 @@ self.assetsManifest = {
     {
       "hash": "sha256-E98Ja4giDu6jK34SClgOO7fUtmJPvGgdCTHMHktYtO8=",
       "url": "Images/OIP4.jpeg"
-    },
-    {
-      "hash": "sha256-hOF9Cg+u3DliG5qoKB6tWK4O0mZMvwMjmJXrMtzDHw4=",
-      "url": "Images/Untitled4.png"
     },
     {
       "hash": "sha256-nua7HS8pgutXSNTU4rGRGwAc6WmpsZikPAwFpASn79Y=",
@@ -228,6 +224,10 @@ self.assetsManifest = {
     {
       "hash": "sha256-fnqJeGnpABjreEn1CEFGVkvaIPvTmE9eHj11cdaKMJA=",
       "url": "Images/labour-day-2025-6753651837110708.2-l.png"
+    },
+    {
+      "hash": "sha256-/Ycidu0Cub/KzVYxwfJd158D7lala91tSktfuuEzFg0=",
+      "url": "Images/newphoto.jpg"
     },
     {
       "hash": "sha256-gjWpenoZK5hUnrUTZIr+0bSUVSyI5c3l2D9lXhSSSP4=",
@@ -494,8 +494,8 @@ self.assetsManifest = {
       "url": "Images/tshirts/yellowpolo.png"
     },
     {
-      "hash": "sha256-Nrui1emquod1ZFpjgZO2OShBxL+vnNtNoS6UzV7Yjdk=",
-      "url": "Images/uniforms/embroideryimage.jpg"
+      "hash": "sha256-j2OAOLj/4R/JHLZgA6FSUjzdvPd0q2UFIhFc74RfP/o=",
+      "url": "Images/uniforms/Embroideryphoto.JPG"
     },
     {
       "hash": "sha256-croz4BP6D3sC166yZrdVh+T6EWuEDoyfoXv1WUWn32w=",
@@ -1162,7 +1162,7 @@ self.assetsManifest = {
       "url": "_framework/TypeSupport.fbn8fbh4gh.wasm"
     },
     {
-      "hash": "sha256-Ow5gcnkWODln25kvdAqAaA9hmK/T/zQKpbhxdLfgOfk=",
+      "hash": "sha256-VRUd1/XvQAZLJ9L2Lmj2EPD/2Gf8+5XWElWlxellDQ4=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -1170,8 +1170,8 @@ self.assetsManifest = {
       "url": "_framework/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-38kBdJv+7sRxm0YGjsmgdr+cHZqi2QwFJVeYT/+KtT4=",
-      "url": "_framework/capitalprint.f8ndj0et5b.wasm"
+      "hash": "sha256-wB8CwWzSgzk0Uk5wVqT/OrARsiOEgRP6hShWMmtAh7c=",
+      "url": "_framework/capitalprint.gky3u4q9ss.wasm"
     },
     {
       "hash": "sha256-0lmjQm4alVRkMelIm/ktDTJ0AFdwMBn4j1swgpizwIs=",
@@ -1454,7 +1454,7 @@ self.assetsManifest = {
       "url": "css/design.css"
     },
     {
-      "hash": "sha256-tmMLek9f/ONkGJYKxx3vyDJQ5mOoob6W8LzZ4LbiRUI=",
+      "hash": "sha256-uf6ZhvXZQzNh4fDdPVEGW0jHHVJj4WkTNdKc4aRRs/M=",
       "url": "css/home.css"
     },
     {
@@ -1474,7 +1474,7 @@ self.assetsManifest = {
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-SW4ZB6XqBg3oQkLOso3WSE5SMnF5Vs2+gyaSDH8zV3g=",
+      "hash": "sha256-LetaowcVCQ+Se6SNMzkeyd/CI2LDYYW6Yy7XUED3x8o=",
       "url": "index.html"
     },
     {
