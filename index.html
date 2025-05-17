@@ -233,25 +233,25 @@
                 modalDescription.textContent = state.sliderProducts[state.currentIndex].Description;
             }
         }
-        //// Function to close modal and resume product grid carousel
-        //function closeModal(subCategoryName) {
-        //    selectedProduct = null;
+        // Function to close modal and resume product grid carousel
+        function closeModal(subCategoryName) {
+            selectedProduct = null;
 
-        //    // Resume subcategory carousel (NOT in modal)
-        //    if (!gridCarouselTimers[subCategoryName]) {
-        //        gridCarouselTimers[subCategoryName] = setInterval(() => {
-        //            let state = categorySliderStates[subCategoryName];
-        //            state.currentIndex = (state.currentIndex + 1) % state.sliderProducts.length;
+            // Resume subcategory carousel (NOT in modal)
+            if (!gridCarouselTimers[subCategoryName]) {
+                gridCarouselTimers[subCategoryName] = setInterval(() => {
+                    let state = categorySliderStates[subCategoryName];
+                    state.currentIndex = (state.currentIndex + 1) % state.sliderProducts.length;
 
-        //            state.sliderProducts.forEach(product => {
-        //                const productImage = document.querySelector(`#product-${product.Name} .product-img`);
-        //                if (productImage) {
-        //                    productImage.src = state.sliderProducts[state.currentIndex].ImageUrl;
-        //                }
-        //            });
-        //        }, 3000); // Auto-slide every 3 seconds
-        //    }
-        //}
+                    state.sliderProducts.forEach(product => {
+                        const productImage = document.querySelector(`#product-${product.Name} .product-img`);
+                        if (productImage) {
+                            productImage.src = state.sliderProducts[state.currentIndex].ImageUrl;
+                        }
+                    });
+                }, 3000); // Auto-slide every 3 seconds
+            }
+        }
         // Example: Call `initializeCarousels(categoryProducts)` when page loads
     </script>
     <script>
@@ -1514,6 +1514,59 @@
 
         .fade-out {
             opacity: 0;
+        }
+    </style>
+    <!-- Responsive Styles for Welcome Popup -->
+    <style>
+        @media (max-width: 600px) {
+            #welcomePopup {
+                width: 90%;
+                max-width: 90%;
+                padding: 10px;
+            }
+
+            #welcomeHeader {
+                font-size: 1rem;
+                padding: 8px;
+            }
+
+            #welcomeBody {
+                padding: 15px;
+            }
+
+            #welcomeButtons {
+                flex-direction: column;
+                padding: 10px 0;
+                gap: 5px;
+            }
+
+                #welcomeButtons button {
+                    padding: 8px 10px;
+                    font-size: 0.9rem;
+                    width: 100%;
+                    max-width: 300px;
+                }
+
+            #welcomeFooter {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
+        }
+    </style>
+    <style>
+        /* Responsive adjustments for the combined section */
+        @media (max-width: 800px) {
+            #combined-section {
+                flex-direction: column;
+            }
+
+            #support-section, #pricing-section {
+                width: 100%;
+            }
+                /* Optionally reduce text size further */
+                #support-section h4, #pricing-section h3 {
+                    font-size: 0.9rem;
+                }
         }
     </style>
 </body>

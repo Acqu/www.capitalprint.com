@@ -4,10 +4,26 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff; /* Set the entire page background to white */
 }
-/*.carousel img {
-    max-width: 100%;
-    height: auto;*/
-}/* Carousel Styles */
+/* In your capitalprint\wwwroot\css\home.css, add or update the following: */
+.carousel-img {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Adjust this value to suit larger screens */
+    object-fit: contain; /* Ensures the entire image is visible without stretching */
+}
+
+@media (min-width: 992px) {
+    .carousel-img {
+        height: 600px;
+    }
+}
+
+@media (max-width: 991px) {
+    .carousel-img {
+        height: 400px;
+    }
+}
+
 .carousel-item img {
     height: auto;
     width: 100%;
@@ -36,11 +52,11 @@ body {
     transition: opacity 1s ease-in-out, transform 0.3s ease-in-out;
 }
 
-@media (min-width: 1024px) {
+/*@media (min-width: 1024px) {
     .carousel-inner img {
-        height: 85vh; /* Increased from 75vh */
-    }
-}
+        height: 85vh;*/ /* Increased from 75vh */
+    /*}
+}*/
 
 .carousel-item.active {
     opacity: 1;
