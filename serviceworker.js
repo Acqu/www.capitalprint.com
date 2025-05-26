@@ -16,60 +16,48 @@ const urlsToCache = [
     '/images/icon-192.png'
 ];
 
-// Install event: Cache resources and force the new worker to take over.
+// Install event: Cache resources and force new worker activation
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            return Promise.all(urlsToCache.map(url => {
-                return fetch(url).then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Failed to fetch ${url}`);
-                    }
+            return Promise.all(urlsToCache.map(url =>
+                fetch(url).then(response => {
+                    if (!response.ok) throw new Error(`Failed to fetch ${url}`);
                     return cache.put(url, response);
-                }).catch(error => console.error('Skipping resource:', error));
-            }));
-        })
-    ); // **Closing bracket was missing here**
-});
-
-// Fetch event: Respond with cached response or fetch from network.
-self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Return cached response if available; otherwise, do a network fetch.
-                return response || fetch(event.request)
-                    .then((networkResponse) => {
-                        // Optionally: You could update the cache here if needed.
-                        return networkResponse;
-                    })
-                    .catch((error) => {
-                        console.error('Fetch failed:', error);
-                        // Optionally, return a fallback response.
-                    });
-            })
+                }).catch(error => console.warn(`Skipping ${url}:`, error))
+            ));
+        }).then(() => self.skipWaiting()) // Immediately take control
     );
 });
 
-// Activate event: Clean up old caches and claim clients.
+// Fetch event: Serve cached responses & update cache dynamically
+self.addEventListener('fetch', (event) => {
+    event.respondWith(
+        caches.match(event.request).then(cachedResponse => {
+            return cachedResponse || fetch(event.request).then(networkResponse => {
+                return caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, networkResponse.clone()); // Update cache dynamically
+                    return networkResponse;
+                });
+            });
+        }).catch(error => console.error('Fetch failed:', error))
+    );
+});
+
+// Activate event: Remove old caches & claim clients
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
-        caches.keys()
-            .then((cacheNames) => {
-                return Promise.all(
-                    cacheNames.map((cacheName) => {
-                        if (!cacheWhitelist.includes(cacheName)) {
-                            return caches.delete(cacheName).catch((error) => {
-                                console.error('Failed to delete cache:', error);
-                            });
-                        }
-                    })
-                );
-            })
-            .then(() => self.clients.claim())
-            .catch((error) => {
-                console.error('Failed to activate service worker:', error);
-            })
+        caches.keys().then(cacheNames =>
+            Promise.all(
+                cacheNames.map(cacheName => {
+                    if (!cacheWhitelist.includes(cacheName)) {
+                        return caches.delete(cacheName).catch(error =>
+                            console.error('Failed to delete cache:', error)
+                        );
+                    }
+                })
+            )
+        ).then(() => self.clients.claim()) // Take control of open pages
     );
 });
