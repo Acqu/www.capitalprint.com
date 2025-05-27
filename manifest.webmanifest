@@ -38,11 +38,11 @@
   "screenshots": [
     {
       "sizes": "1080x1920",
-      "src": "images/screenshot1.jpeg",
+      "src": "images/screenshot1.png",
       "type": "image/png"
     },
     {
-      "src": "images/screenshot2.jpeg",
+      "src": "images/screenshot2.png",
       "type": "image/png",
       "sizes": "1080x1920"
     }
