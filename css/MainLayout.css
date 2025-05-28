@@ -356,4 +356,16 @@ header {
 .modal-backdrop.show {
     opacity: 0.8; /* Increase (closer to 1) for a darker backdrop */
 }
+.floating-btn {
+    transition: transform 0.3s ease;
+}
+
+.rotate-up {
+    transform: rotate(180deg);
+}
+
+.rotate-down {
+    transform: rotate(0deg);
+}
+
 

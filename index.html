@@ -393,7 +393,9 @@
         </div>
         <div class="animated-text">We Customize the look you Wear, While You Wear The Look You Wish...</div>
     </div>
-    <button id="scrollToggleBtn" class="floating-btn">↑↓</button>
+    <button id="scrollToggleBtn" class="floating-btn">
+        <i class="fas fa-arrow-down"></i>
+    </button>
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -431,16 +433,22 @@
     <script>
         document.getElementById("scrollToggleBtn").addEventListener("click", function () {
             const footer = document.querySelector("footer");
-            const topBanner = document.querySelector(".top-banner"); // Adjust class based on your layout
+            const topBanner = document.querySelector(".top-banner");
+            const icon = this.querySelector("i"); // Reference to the icon
             const isAtBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight;
 
             if (!isAtBottom) {
                 footer.scrollIntoView({ behavior: "smooth" });
+                icon.classList.remove("fa-arrow-down");
+                icon.classList.add("fa-arrow-up"); // Change icon when scrolling down
             } else {
                 topBanner.scrollIntoView({ behavior: "smooth" });
+                icon.classList.remove("fa-arrow-up");
+                icon.classList.add("fa-arrow-down"); // Change icon when scrolling up
             }
         });
     </script>
+
     <script>
         $(document).ready(function () {
             $('.dropdown-toggle').on('click', function () {
