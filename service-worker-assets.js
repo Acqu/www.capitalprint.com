@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "UGjYPDyQ",
+  "version": "XUtNWbH3",
   "assets": [
     {
       "hash": "sha256-Nw3QYeeZRibpS4745faRQ/CSkBtXyolGREnArXQqjbE=",
@@ -602,6 +602,14 @@ self.assetsManifest = {
       "url": "Images/uniforms/Embroideryphoto.JPG"
     },
     {
+      "hash": "sha256-Jr6TUvc3zXDT5Uzdt76uAQ1XgzjbfPJgAnSSNS2Es0o=",
+      "url": "Images/uniforms/cpfabricmoff.jpg"
+    },
+    {
+      "hash": "sha256-qXIa0c6LXQ/ISEfkPlqSqAncEd8xQrtGKiwasdsMt/0=",
+      "url": "Images/uniforms/cpscalf.JPG"
+    },
+    {
       "hash": "sha256-Ztpn7HUDpE7UU7XPU1lFoxxyGPTi5MB1QbLHJhleMeU=",
       "url": "Images/uniforms/s10.jpg"
     },
@@ -898,7 +906,7 @@ self.assetsManifest = {
       "url": "_framework/System.ezrw3d5kw2.wasm"
     },
     {
-      "hash": "sha256-HRWX2XTdju2CmX7Roo+tqc0+gWXwpWJoQqll/zrboGI=",
+      "hash": "sha256-CcknAzL65gdnptI0hraQ8An3g0UEz4yhKoLIVPoetJQ=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -906,8 +914,8 @@ self.assetsManifest = {
       "url": "_framework/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-Dz1B1H/DMs1pLNkP4XYpVTDhLJ4/Izw5k6MUt4BuCvA=",
-      "url": "_framework/capitalprint.3326t4uht2.wasm"
+      "hash": "sha256-N8vpEUbRfgctGhhzjni6QmCDkFVuF2GGfoxeTgF7WNQ=",
+      "url": "_framework/capitalprint.b7bawt8hb9.wasm"
     },
     {
       "hash": "sha256-0C5th70x3cgwI6otbYfnZFNKiDFUEWeeGoJEdszlFRc=",
