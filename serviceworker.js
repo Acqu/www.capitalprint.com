@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'israeledwards-cache-v1';
+﻿const CACHE_NAME = `israeledwards-cache-v${Date.now()}`; // Dynamic cache version to force updates
 const urlsToCache = [
     '/',
     '/index.html',
@@ -19,9 +19,9 @@ const urlsToCache = [
 // Install event: Cache resources and force new worker activation
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            return Promise.all(urlsToCache.map(url =>
-                fetch(url).then(response => {
+        caches.open(CACHE_NAME).then((cache) => {
+            return Promise.all(urlsToCache.map((url) =>
+                fetch(url).then((response) => {
                     if (!response.ok) throw new Error(`Failed to fetch ${url}`);
                     return cache.put(url, response);
                 }).catch(error => console.warn(`Skipping ${url}:`, error))
@@ -30,33 +30,19 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Fetch event: Serve cached responses & update cache dynamically
+// Fetch event: ALWAYS fetch the latest version (bypassing cache)
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
-            return cachedResponse || fetch(event.request).then(networkResponse => {
-                return caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, networkResponse.clone()); // Update cache dynamically
-                    return networkResponse;
-                });
-            });
-        }).catch(error => console.error('Fetch failed:', error))
+        fetch(event.request).catch(() => caches.match(event.request)) // Network-first strategy
     );
 });
 
 // Activate event: Remove old caches & claim clients
 self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
         caches.keys().then(cacheNames =>
             Promise.all(
-                cacheNames.map(cacheName => {
-                    if (!cacheWhitelist.includes(cacheName)) {
-                        return caches.delete(cacheName).catch(error =>
-                            console.error('Failed to delete cache:', error)
-                        );
-                    }
-                })
+                cacheNames.map(cacheName => caches.delete(cacheName)) // Delete all old caches
             )
         ).then(() => self.clients.claim()) // Take control of open pages
     );

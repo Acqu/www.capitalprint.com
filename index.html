@@ -398,7 +398,6 @@
     </button>
 
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@latest"></script>
@@ -407,12 +406,26 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script async src="https://js.stripe.com/v3"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/prebid.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/serviceworker.js')
                     .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
+                        console.log(`Service Worker registered with scope: ${registration.scope}`);
+
+                        // Check for service worker updates
+                        registration.onupdatefound = () => {
+                            const newWorker = registration.installing;
+                            console.log('New Service Worker found, updating...');
+                            newWorker.onstatechange = () => {
+                                if (newWorker.state === 'activated') {
+                                    console.log('New Service Worker activated. Consider refreshing!');
+                                }
+                            };
+                        };
                     })
                     .catch((error) => {
                         console.error('Service Worker registration failed:', error);
@@ -420,15 +433,101 @@
             });
         }
     </script>
+    <!--this is the script  to runing invariable adds-->
+    <script>
+        var adUnits = [{
+            code: 'banner-ad',
+            mediaTypes: {
+                banner: {
+                    sizes: [[300, 250], [728, 90]]
+                }
+            },
+            bids: [{
+                bidder: 'selfHostedBidder',
+                params: {
+                    placementId: 'your-placement-id',
+                    price: 0.10 // Minimum bid price in USD
+                }
+            }]
+        }];
+
+        pbjs.que.push(function () {
+            pbjs.addAdUnits(adUnits);
+            pbjs.requestBids({
+                bidsBackHandler: function (bidResponses) {
+                    console.log('Bid responses:', bidResponses);
+
+                    let highestBid = getHighestBid(bidResponses);
+                    if (highestBid) {
+                        displayAd(highestBid); // Show ad first
+                    }
+                }
+            });
+        });
+
+        function getHighestBid(bidResponses) {
+            let bids = bidResponses['banner-ad']?.bids || [];
+            return bids.length ? bids.reduce((max, bid) => bid.price > max.price ? bid : max, bids[0]) : null;
+        }
+
+        function displayAd(bid) {
+            let adContainer = document.getElementById('banner-ad');
+            adContainer.innerHTML = `<iframe src="${bid.adUrl}" width="300" height="250"></iframe>`;
+
+            // Track when the ad is fully displayed (example: 10 seconds)
+            setTimeout(() => {
+                console.log("Ad fully watched. Processing payment...");
+                processPayment(bid.price); // Charge advertiser after ad is watched
+            }, 10000); // Adjust timing based on ad length
+        }
+    </script>
+    <script>
+        async function finalizePayment(clientSecret) {
+            const stripe = Stripe("pk_live_i3F5mKKUq80vCt4beIEmEKk700wYYBkBF7"); // Replace with your actual Stripe Public Key
+
+            const result = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: {
+                        number: '4242424242424242',
+                        exp_month: 12,
+                        exp_year: 2025,
+                        cvc: '123'
+                    }
+                }
+            });
+
+            if (result.error) {
+                console.error("Payment failed:", result.error.message);
+                return false;
+            } else {
+                console.log("Payment successful!");
+                return true;
+            }
+        }
+    </script>
     <script>
         async function compressImage(file) {
-            const options = {
-                maxSizeMB: 1,  // Target size in MB
-                maxWidthOrHeight: 1024,  // Resize if needed
-                useWebWorker: true  // Improves performance
-            };
-            return await imageCompression(file, options);
+            try {
+                const options = {
+                    maxSizeMB: 0.8, // Slightly reduced for better optimization
+                    maxWidthOrHeight: 1024, // Resize if needed
+                    useWebWorker: true, // Improves performance
+                    initialQuality: 0.7, // Ensures high quality while reducing size
+                    fileType: file.type // Auto-detects file type
+                };
+
+                console.log(`Compressing image: ${file.name}, Size: ${(file.size / 1024 / 1024).toFixed(2)} MB`);
+
+                const compressedFile = await imageCompression(file, options);
+
+                console.log(`Compression complete: New Size: ${(compressedFile.size / 1024 / 1024).toFixed(2)} MB`);
+                return compressedFile;
+            } catch (error) {
+                console.error("Image compression failed:", error);
+                return null;
+            }
         }
+
     </script>
     <script>
         document.getElementById("scrollToggleBtn").addEventListener("click", function () {
