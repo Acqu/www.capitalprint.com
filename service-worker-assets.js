@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "9Dt10jKR",
+  "version": "66CEl9R7",
   "assets": [
     {
       "hash": "sha256-Nw3QYeeZRibpS4745faRQ/CSkBtXyolGREnArXQqjbE=",
@@ -402,6 +402,10 @@ self.assetsManifest = {
       "url": "Images/tshirts/ash.png"
     },
     {
+      "hash": "sha256-JiBbTRxTalqW5x090QjlelXC0fzX3h4Qa3f8jdqUTvk=",
+      "url": "Images/tshirts/ashlarcost.png"
+    },
+    {
       "hash": "sha256-65ltuVY69VmjQbLzR5mPOG72Hz/3+YKninI1cp45220=",
       "url": "Images/tshirts/black-Picsart.png"
     },
@@ -420,6 +424,14 @@ self.assetsManifest = {
     {
       "hash": "sha256-TkoA2heoDMx9+oAV+wqLxnsP7GTIGsAG71SJJtyOoFg=",
       "url": "Images/tshirts/blue.png"
+    },
+    {
+      "hash": "sha256-xRQVoZV3RmbvxsnB2HAf+N+WnlJiAj9NzpJTR7UC3k4=",
+      "url": "Images/tshirts/blueblacklacost.png"
+    },
+    {
+      "hash": "sha256-pJTm/cwVFaflxIoZeoy2C5bfRgvT+l9YSJNGIC39HGw=",
+      "url": "Images/tshirts/bluelarcost.png"
     },
     {
       "hash": "sha256-Li4a7VJRL5gHMXzDWf8issqzhqLtL7GvJM2QQmVP0aI=",
@@ -442,12 +454,24 @@ self.assetsManifest = {
       "url": "Images/tshirts/green.png"
     },
     {
+      "hash": "sha256-V+ebK603Vrti8frh7kCnxMoH8My07p/MK90bu1SdvIo=",
+      "url": "Images/tshirts/greenlarcost.png"
+    },
+    {
+      "hash": "sha256-mC9b+VImrNSOiFOm/khQdMx+LMWE32/RLV3WQh2uPOk=",
+      "url": "Images/tshirts/moovelarcost.png"
+    },
+    {
       "hash": "sha256-VXnWVgPHjdlhaNCvAbAAMHirExMl+KpE22ZTPLefXl4=",
       "url": "Images/tshirts/orange.png"
     },
     {
       "hash": "sha256-NvimlYqgqcH+gty2aGu78SZT5hTN2uXYi6m4mWb1vW8=",
       "url": "Images/tshirts/oranged.png"
+    },
+    {
+      "hash": "sha256-ujEB3EGDU6NNZfiIouxL/qIiy7AtVcyJOiipXhaI65U=",
+      "url": "Images/tshirts/pinklarcost.png"
     },
     {
       "hash": "sha256-SEcGWZETs8qRp+tlKrt3v9cAz8N18DTfQ9rr2Lv5dXg=",
@@ -572,6 +596,10 @@ self.assetsManifest = {
     {
       "hash": "sha256-wx+A8JZo30USRJrirTWGLibkB52dGuhr0kzk0L0eb7A=",
       "url": "Images/tshirts/yellowd.png"
+    },
+    {
+      "hash": "sha256-vlyAqoxl89jLa/EpDfzP8s15RJ4oLn7ApgJ36nmnFK8=",
+      "url": "Images/tshirts/yellowlarcost.png"
     },
     {
       "hash": "sha256-JG0EvRHew7lhhf0r8GfAVh3DyMLxcUWi7VVrtP22f34=",
@@ -922,7 +950,7 @@ self.assetsManifest = {
       "url": "_framework/System.cunp5qiwjj.wasm"
     },
     {
-      "hash": "sha256-sECU0KgMTuI/XR8VmkGJrzyFAiWkvFo54AJkj9F0GN0=",
+      "hash": "sha256-pvkFxamBLswPeEexln3zvWqCyw8CXnv5Z8b3L3f+csA=",
       "url": "_framework/blazor.boot.json"
     },
     {
@@ -930,8 +958,8 @@ self.assetsManifest = {
       "url": "_framework/blazor.webassembly.js"
     },
     {
-      "hash": "sha256-mR9RJf1ejpmnrbuAAWach/sHheBKRPIJxSFwM4VMU68=",
-      "url": "_framework/capitalprint.rnxwq9ty8b.wasm"
+      "hash": "sha256-l6ZSgvNMTUiToK+8uIYrfnrNuYkSVc7oeJO+AKrQR3M=",
+      "url": "_framework/capitalprint.ldsb9je1bi.wasm"
     },
     {
       "hash": "sha256-VSrDABliXym1uaVGf/4XAZdHT7sA5xiMiD/TmJeALDc=",
@@ -1110,7 +1138,7 @@ self.assetsManifest = {
       "url": "css/design.css"
     },
     {
-      "hash": "sha256-sjnbVc917YM6qdRpKOSaH50+8eW9aKNZpgXw0HeWspU=",
+      "hash": "sha256-rNhhOSPnJyAFgHFSCdy/cCj9e/QjE3Cp+GyFSa/gcXk=",
       "url": "css/home.css"
     },
     {
@@ -1130,7 +1158,7 @@ self.assetsManifest = {
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-sa27qMlk3boG1DLXwNwkxPZNQ8ynC8jVdNDIpXef10s=",
+      "hash": "sha256-nAigvV6iD3mtMYyu/ISf5YEJJKIGBIvlUGosm5hnmVg=",
       "url": "index.html"
     },
     {

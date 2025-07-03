@@ -570,12 +570,13 @@ footer {
         }
 /* New Tag Styles */
 .new-tag {
-    display: none; /* Hidden by default; JS shows/hides based on product name */
+    position: absolute;
+    top: 5px;
+    right: 5px;
     font-size: 12px;
     background-color: red;
     color: white;
     padding: 2px 5px;
-    margin-top: 5px;
     border-radius: 3px;
     text-transform: uppercase;
 }
