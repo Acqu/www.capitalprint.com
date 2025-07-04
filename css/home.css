@@ -590,6 +590,25 @@ footer {
 .thumbnail-modal-image.sepia-thumbnail {
     filter: sepia(100%);
 }
+/*// touch actions on main image and modal image to prevent zooming*/
+.main-image-container, #mainModalImage {
+    touch-action: none !important;
+}
+/* Price Styling */
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.current-price {
+    color: #e67e22;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Ensure product details are responsive */
 /* Mobile-friendly adjustments */
 @media (max-width: 768px) {
     .section-container {
