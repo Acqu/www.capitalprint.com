@@ -367,5 +367,39 @@ header {
 .rotate-down {
     transform: rotate(0deg);
 }
+/*// Floating Carousel Styles
+*/
+.carousel-viewport {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+}
+
+.floating-carousel-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scroll-left 60s linear infinite;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.image-wrapper {
+    flex: 0 0 auto;
+}
+
+
+/* Make sure the images themselves don't wrap */
+.image-wrapper {
+    flex: 0 0 auto;
+}
 
 
